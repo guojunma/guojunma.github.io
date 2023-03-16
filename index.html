@@ -1,59 +1,32 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>My Website - Guojun Ma</title>
-	<link rel="stylesheet" type="text/css" href="style.css">
-</head>
-<body>
-	<header>
-		<h1>Guojun Ma</h1>
-		<nav>
-			<ul>
-				<li><a href="#about">About</a></li>
-				<li><a href="#education">Education</a></li>
-				<li><a href="#publications">Publications</a></li>
-				<li><a href="#projects">Projects</a></li>
-				<li><a href="#contact">Contact</a></li>
-			</ul>
-		</nav>
-	</header>
-	<main>
-		<section id="about">
-			<h2>About</h2>
-			<p>I am interested in mathematics of data science and AI.</p>
-			<img src="profile-pic.jpg" alt="Your Name">
-		</section>
-		<section id="education">
-			<h2>Education</h2>
-			<ul>
-				<li><strong>M.sc</strong> - University of Victoria (2022)</li>
-				<li><strong>B.sc. Math and economics</strong> - University of Alberta (2020)</li>
-			</ul>
-		</section>
-		<section id="publications">
-			<h2>Publications</h2>
-			<ul>
-				<li><a href="#">Publication Title</a></li>
-				<li><a href="#">Publication Title</a></li>
-			</ul>
-		</section>
-		<section id="projects">
-			<h2>Projects</h2>
-			<ul>
-				<li><a href="#">Project Title</a></li>
-				<li><a href="#">Project Title</a></li>
-			</ul>
-		</section>
-		<section id="contact">
-			<h2>Contact</h2>
-			<p>Email: guojunma5@gmail.com</p>
-			<p>Phone: </p>
-		</section>
-	</main>
-	<footer>
-		<p>&copy; Guojun Ma 2023</p>
-	</footer>
-</body>
+<html>
+  <head>
+    <title>My Academic Website</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+  </head>
+  <body>
+    <div class="tab">
+      <button class="tablinks" onclick="openTab(event, 'tab1')">Tab 1</button>
+      <button class="tablinks" onclick="openTab(event, 'tab2')">Tab 2</button>
+      <button class="tablinks" onclick="openTab(event, 'tab3')">Tab 3</button>
+    </div>
+
+    <div id="tab1" class="tabcontent">
+      <h2>Tab 1 Content</h2>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla eget massa vel tortor faucibus tincidunt sed in quam. Pellentesque a massa eget enim cursus convallis. Vestibulum vel magna eu leo tincidunt lacinia. Nam vel tortor in mauris aliquam blandit ac ac ipsum. </p>
+    </div>
+
+    <div id="tab2" class="tabcontent">
+      <h2>Tab 2 Content</h2>
+      <p>Phasellus faucibus mauris tellus, ac maximus mi ullamcorper quis. Nulla suscipit dui quis libero suscipit, vitae hendrerit elit aliquet. In hac habitasse platea dictumst. Suspendisse eget odio vel massa faucibus vehicula.</p>
+    </div>
+
+    <div id="tab3" class="tabcontent">
+      <h2>Tab 3 Content</h2>
+      <p>Vivamus id bibendum neque, in egestas ex. In scelerisque ac diam a vestibulum. Praesent quis dapibus urna. Sed fermentum, enim quis lacinia dignissim, sapien dolor mollis augue, non ullamcorper metus augue non massa.</p>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
 </html>
+
