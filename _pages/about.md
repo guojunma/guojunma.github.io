@@ -2,25 +2,25 @@
 layout: about
 title: about
 permalink: /
-subtitle: <a href='#'>Affiliations</a>. Address. Contacts. Moto. Etc.
+subtitle: Statistian | Data scientist
 
 profile:
   align: right
   image: prof_pic.jpg
   image_circular: false # crops the image to make it circular
   more_info: >
-    <p>555 your office number</p>
-    <p>123 your address street</p>
-    <p>Your City, State 12345</p>
 
-news: true # includes a list of news items
-latest_posts: true # includes a list of the newest posts
-selected_papers: true # includes a list of papers marked as "selected={true}"
+
+news: false # includes a list of news items
+latest_posts: false # includes a list of the newest posts
+selected_papers: false # includes a list of papers marked as "selected={true}"
 social: true # includes social icons at the bottom of the page
 ---
 
-Write your biography here. Tell the world about yourself. Link to your favorite [subreddit](http://reddit.com). You can put a picture in, too. The code is already in, just name your picture `prof_pic.jpg` and put it in the `img/` folder.
 
-Put your address / P.O. box / other info right below your picture. You can also disable any of these elements by editing `profile` property of the YAML header of your `_pages/about.md`. Edit `_bibliography/papers.bib` and Jekyll will render your [publications page](/al-folio/publications/) automatically.
+Welcome to my website! :smile: Here you can explore a variety of my ongoing projects and repositories. 
 
-Link to your social media connections, too. This theme is set up to use [Font Awesome icons](https://fontawesome.com/) and [Academicons](https://jpswalsh.github.io/academicons/), like the ones below. Add your Facebook, Twitter, LinkedIn, Google Scholar, or just disable all of them.
+Let me provide you with a more detailed introduction to who I am and what I bring to the table. My academic journey commenced with a dual degree in Mathematics and Economics from the University of Alberta, which equipped me with a solid foundation in problem-solving and a comprehensive understanding of the business realm. Additionally, I hold a master's degree in Statistics from the University of Victoria, where I collaborated with Dr. Xuekui Zhang on research in biostatistics. My expertise lies in utilizing statistical techniques, particularly machine learning, to analyze complex biological data and extract valuable scientific insights.
+
+I am deeply passionate about the data-driven approach to addressing questions across various disciplines such as biology and business, as evidenced by the sample works posted here. I firmly believe in the transformative power of data science in our increasingly complex world, where effective analytical processes can lead us to new discoveries and actionable insights. I am convinced that our government, corporations, and research institutions can enhance their efficiency and profitability by leveraging these insights. I am looking forward for the opportunity to solve real-world problems and contribute to innovative projects in an innovative organization.
+

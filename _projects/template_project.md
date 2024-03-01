@@ -1,10 +1,10 @@
 ---
 layout: page
-title: project 2
+title: project 5
 description: a project with a background image
 img: assets/img/12.jpg
 importance: 1
-category: work
+category: fun
 related_publications: true
 ---
 
@@ -78,4 +78,34 @@ Here's the code for the last row of images above:
 </div>
 ```
 
+---
+references:
+- type: article-journal
+  id: WatsonCrick1953
+  author:
+  - family: Watson
+    given: J. D.
+  - family: Crick
+    given: F. H. C.
+  issued:
+    date-parts:
+    - - 1953
+      - 4
+      - 25
+  title: 'Molecular structure of nucleic acids: a structure for
+    deoxyribose nucleic acid'
+  title-short: Molecular structure of nucleic acids
+  container-title: Nature
+  volume: 171
+  issue: 4356
+  page: 737-738
+  DOI: 10.1038/171737a0
+  URL: https://www.nature.com/articles/171737a0
+  language: en-GB
+---
+
 {% endraw %}
+
+## References
+
+- **Watson, J. D., & Crick, F. H. C.** (1953). Molecular structure of nucleic acids: a structure for deoxyribose nucleic acid. *Nature*, 171(4356), 737-738. DOI: [10.1038/171737a0](https://doi.org/10.1038/171737a0)
