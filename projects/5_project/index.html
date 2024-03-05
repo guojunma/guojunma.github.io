@@ -1,0 +1,853 @@
+<!DOCTYPE html> <html lang="en"> <head> <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> <meta charset="utf-8"> <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> <meta http-equiv="X-UA-Compatible" content="IE=edge"> <title> Stock Market analysis | Gordon Ma </title> <meta name="author" content="Gordon Ma"> <meta name="description" content="A data science portfolio "> <meta name="keywords" content="academic-website, portfolio-website"> <link rel="stylesheet" href="/assets/css/bootstrap.min.css?a4b3f509e79c54a512b890d73235ef04"> <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mdbootstrap@4.20.0/css/mdb.min.css" integrity="sha256-jpjYvU3G3N6nrrBwXJoVEYI/0zw8htfFnhT9ljN3JJw=" crossorigin="anonymous"> <link defer rel="stylesheet" href="/assets/css/academicons.min.css?f0b7046b84e425c55f3463ac249818f5"> <link defer rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:100,300,400,500,700|Material+Icons&amp;display=swap"> <link defer rel="stylesheet" href="/assets/css/jekyll-pygments-themes-github.css?591dab5a4e56573bf4ef7fd332894c99" media="" id="highlight_theme_light"> <link rel="shortcut icon" href="data:image/svg+xml,&lt;svg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20100%20100%22&gt;&lt;text%20y=%22.9em%22%20font-size=%2290%22&gt;%E2%9A%9B%EF%B8%8F&lt;/text&gt;&lt;/svg&gt;"> <link rel="stylesheet" href="/assets/css/main.css?d41d8cd98f00b204e9800998ecf8427e"> <link rel="canonical" href="https://guojunma.github.io/projects/5_project/"> <link defer rel="stylesheet" href="/assets/css/jekyll-pygments-themes-native.css?5847e5ed4a4568527aa6cfab446049ca" media="none" id="highlight_theme_dark"> <script src="/assets/js/theme.js?0afe9f0ae161375728f7bcc5eb5b4ab4"></script> </head> <body class="fixed-top-nav "> <header> <nav id="navbar" class="navbar navbar-light navbar-expand-sm fixed-top" role="navigation"> <div class="container"> <a class="navbar-brand title font-weight-lighter" href="/"> <span class="font-weight-bold">Gordon</span> Ma </a> <button class="navbar-toggler collapsed ml-auto" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar top-bar"></span> <span class="icon-bar middle-bar"></span> <span class="icon-bar bottom-bar"></span> </button> <div class="collapse navbar-collapse text-right" id="navbarNav"> <ul class="navbar-nav ml-auto flex-nowrap"> <li class="nav-item "> <a class="nav-link" href="/">about </a> </li> <li class="nav-item "> <a class="nav-link" href="/publications/">publications </a> </li> <li class="nav-item active"> <a class="nav-link" href="/projects/">projects <span class="sr-only">(current)</span> </a> </li> <li class="nav-item "> <a class="nav-link" href="/repositories/">repositories </a> </li> <li class="nav-item "> <a class="nav-link" href="/cv/">cv </a> </li> <li class="toggle-container"> <button id="light-toggle" title="Change theme"> <i class="fa-solid fa-moon"></i> <i class="fa-solid fa-sun"></i> </button> </li> </ul> </div> </div> </nav> <progress id="progress" value="0"> <div class="progress-container"> <span class="progress-bar"></span> </div> </progress> </header> <div class="container mt-5" role="main"> <div class="post"> <header class="post-header"> <h1 class="post-title">Stock Market analysis</h1> <p class="post-description"></p> </header> <article> <p>::: {#1a5343f8 .cell .markdown papermill=”{"duration":1.3433e-2,"end_time":"2023-01-31T12:53:33.338639","exception":false,"start_time":"2023-01-31T12:53:33.325206","status":"completed"}” tags=”[]”}</p> <h1 id="data-project---stock-market-analysis">Data Project - Stock Market Analysis</h1> <p><img src="vertopal_a579fb8fa69546c39551d8bfbeb13562/techAnalysis-1000x500.jpg" alt="techAnalysis-1000x500.jpg"> :::</p> <p>::: {#680b164c .cell .markdown papermill=”{"duration":1.1525e-2,"end_time":"2023-01-31T12:53:33.362147","exception":false,"start_time":"2023-01-31T12:53:33.350622","status":"completed"}” tags=”[]”} In this project, we explore financial data from the stock market, particularly technology stocks. Financial data is an example of time series data, which is one of the most prevalent data types characterized by a series of data points indexed in time order. We will get the stock data from the Yahoo finance website, which is a rich resource for financial market data. By analyzing these data, we aim to answer the following questions:</p> <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1.) What was the average change in prices of the stock over time?
+2.) What was the correlation between different stocks?
+3.) How much value do we put at risk by investing in a particular stock?
+4.) How can we predict the future stock behavior? (For example, predicting the closing price stock price of APPLE inc.)
+</code></pre></div></div> <hr> <h2 id="getting-the-data">Getting the Data</h2> <p>The first step is to get the data and load it to memory. We will get our stock data from the Yahoo Finance website. Yahoo Finance is a rich resource of financial market data and tools to find compelling investments. To get the data from Yahoo Finance, we will be using yfinance library which offers a threaded and Pythonic way to download market data from Yahoo. Check this article to learn more about yfinance: <a href="https://aroussi.com/post/python-yahoo-finance" rel="external nofollow noopener" target="_blank">Reliably download historical market data from with Python</a> :::</p> <p>::: {#e7bdae83 .cell .markdown papermill=”{"duration":1.1471e-2,"end_time":"2023-01-31T12:53:33.385342","exception":false,"start_time":"2023-01-31T12:53:33.373871","status":"completed"}” tags=”[]”}</p> <h1 id="1-getting-the-data-1-getting-the-data">1. Getting the Data {#1-getting-the-data}</h1> <p>In this section, we load the required packages and download the financial data. We will get our stock data from the Yahoo Finance website, which is a rich resource of financial market data and tools. We are using <a href="https://aroussi.com/post/python-yahoo-finance" rel="external nofollow noopener" target="_blank">yfinance library</a> which offers a programatics way to download market data from Yahoo. :::</p> <p>::: {#e11e8f6e .cell .code execution_count=”1” execution=”{"iopub.execute_input":"2023-01-31T12:53:48.911805Z","iopub.status.busy":"2023-01-31T12:53:48.911391Z","iopub.status.idle":"2023-01-31T12:53:53.965505Z","shell.execute_reply":"2023-01-31T12:53:53.964183Z"}” papermill=”{"duration":5.070071,"end_time":"2023-01-31T12:53:53.967840","exception":false,"start_time":"2023-01-31T12:53:48.897769","status":"completed"}” tags=”[]”}</p> <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">pandas</span> <span class="k">as</span> <span class="n">pd</span>
+<span class="kn">import</span> <span class="n">numpy</span> <span class="k">as</span> <span class="n">np</span>
+
+<span class="kn">import</span> <span class="n">matplotlib.pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">import</span> <span class="n">seaborn</span> <span class="k">as</span> <span class="n">sns</span>
+<span class="n">sns</span><span class="p">.</span><span class="nf">set_style</span><span class="p">(</span><span class="sh">'</span><span class="s">whitegrid</span><span class="sh">'</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">style</span><span class="p">.</span><span class="nf">use</span><span class="p">(</span><span class="sh">"</span><span class="s">fivethirtyeight</span><span class="sh">"</span><span class="p">)</span>
+<span class="o">%</span><span class="n">matplotlib</span> <span class="n">inline</span>
+
+<span class="c1"># For reading stock data from yahoo
+</span><span class="kn">from</span> <span class="n">pandas_datareader.data</span> <span class="kn">import</span> <span class="n">DataReader</span>
+<span class="kn">import</span> <span class="n">yfinance</span> <span class="k">as</span> <span class="n">yf</span>
+<span class="kn">from</span> <span class="n">pandas_datareader</span> <span class="kn">import</span> <span class="n">data</span> <span class="k">as</span> <span class="n">pdr</span>
+
+<span class="n">yf</span><span class="p">.</span><span class="nf">pdr_override</span><span class="p">()</span>
+
+<span class="c1"># For time stamps
+</span><span class="kn">from</span> <span class="n">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
+
+
+<span class="c1"># The tech stocks we'll use for this analysis
+</span><span class="n">tech_list</span> <span class="o">=</span> <span class="p">[</span><span class="sh">'</span><span class="s">AAPL</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">GOOG</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">MSFT</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">AMZN</span><span class="sh">'</span><span class="p">]</span>
+
+<span class="c1"># Set up End and Start times for data grab
+</span><span class="n">tech_list</span> <span class="o">=</span> <span class="p">[</span><span class="sh">'</span><span class="s">AAPL</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">GOOG</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">MSFT</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">AMZN</span><span class="sh">'</span><span class="p">]</span>
+
+<span class="n">end</span> <span class="o">=</span> <span class="n">datetime</span><span class="p">.</span><span class="nf">now</span><span class="p">()</span>
+<span class="n">start</span> <span class="o">=</span> <span class="nf">datetime</span><span class="p">(</span><span class="n">end</span><span class="p">.</span><span class="n">year</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">end</span><span class="p">.</span><span class="n">month</span><span class="p">,</span> <span class="n">end</span><span class="p">.</span><span class="n">day</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">stock</span> <span class="ow">in</span> <span class="n">tech_list</span><span class="p">:</span>
+    <span class="nf">globals</span><span class="p">()[</span><span class="n">stock</span><span class="p">]</span> <span class="o">=</span> <span class="n">yf</span><span class="p">.</span><span class="nf">download</span><span class="p">(</span><span class="n">stock</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">)</span>
+    
+
+<span class="n">company_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">AAPL</span><span class="p">,</span> <span class="n">GOOG</span><span class="p">,</span> <span class="n">MSFT</span><span class="p">,</span> <span class="n">AMZN</span><span class="p">]</span>
+<span class="n">company_name</span> <span class="o">=</span> <span class="p">[</span><span class="sh">"</span><span class="s">APPLE</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">GOOGLE</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">MICROSOFT</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">AMAZON</span><span class="sh">"</span><span class="p">]</span>
+
+<span class="k">for</span> <span class="n">company</span><span class="p">,</span> <span class="n">com_name</span> <span class="ow">in</span> <span class="nf">zip</span><span class="p">(</span><span class="n">company_list</span><span class="p">,</span> <span class="n">company_name</span><span class="p">):</span>
+    <span class="n">company</span><span class="p">[</span><span class="sh">"</span><span class="s">company_name</span><span class="sh">"</span><span class="p">]</span> <span class="o">=</span> <span class="n">com_name</span>
+    
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="nf">concat</span><span class="p">(</span><span class="n">company_list</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">df</span><span class="p">.</span><span class="nf">tail</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</code></pre></div></div> <p>::: {.output .stream .stderr} [<strong>**</strong><strong>**</strong><strong>**</strong><strong><em>100%%</em></strong><strong>**</strong><strong>**</strong><strong>**</strong><em>] 1 of 1 completed [</em><strong>**</strong><strong>**</strong><strong>**</strong><strong>100%%</strong><strong>**</strong><strong>**</strong><strong>**</strong><strong>] 1 of 1 completed [</strong><strong>**</strong><strong>**</strong><strong>**</strong><em>100%%</em><strong>**</strong><strong>**</strong><strong>**</strong><strong><em>] 1 of 1 completed [</em></strong><strong>**</strong><strong>**</strong><strong>**</strong>100%%<strong>**</strong><strong>**</strong><strong>**</strong><em>**</em>] 1 of 1 completed :::</p> <p>::: {.output .execute_result execution_count=”1”}</p> <pre><code class="language-{=html}">&lt;div&gt;
+&lt;style scoped&gt;
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+&lt;/style&gt;
+&lt;table border="1" class="dataframe"&gt;
+  &lt;thead&gt;
+    &lt;tr style="text-align: right;"&gt;
+      &lt;th&gt;&lt;/th&gt;
+      &lt;th&gt;Open&lt;/th&gt;
+      &lt;th&gt;High&lt;/th&gt;
+      &lt;th&gt;Low&lt;/th&gt;
+      &lt;th&gt;Close&lt;/th&gt;
+      &lt;th&gt;Adj Close&lt;/th&gt;
+      &lt;th&gt;Volume&lt;/th&gt;
+      &lt;th&gt;company_name&lt;/th&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Date&lt;/th&gt;
+      &lt;th&gt;&lt;/th&gt;
+      &lt;th&gt;&lt;/th&gt;
+      &lt;th&gt;&lt;/th&gt;
+      &lt;th&gt;&lt;/th&gt;
+      &lt;th&gt;&lt;/th&gt;
+      &lt;th&gt;&lt;/th&gt;
+      &lt;th&gt;&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;th&gt;2024-02-20&lt;/th&gt;
+      &lt;td&gt;167.830002&lt;/td&gt;
+      &lt;td&gt;168.710007&lt;/td&gt;
+      &lt;td&gt;165.740005&lt;/td&gt;
+      &lt;td&gt;167.080002&lt;/td&gt;
+      &lt;td&gt;167.080002&lt;/td&gt;
+      &lt;td&gt;41980300&lt;/td&gt;
+      &lt;td&gt;AMAZON&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;2024-02-21&lt;/th&gt;
+      &lt;td&gt;168.940002&lt;/td&gt;
+      &lt;td&gt;170.229996&lt;/td&gt;
+      &lt;td&gt;167.139999&lt;/td&gt;
+      &lt;td&gt;168.589996&lt;/td&gt;
+      &lt;td&gt;168.589996&lt;/td&gt;
+      &lt;td&gt;44575600&lt;/td&gt;
+      &lt;td&gt;AMAZON&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;2024-02-22&lt;/th&gt;
+      &lt;td&gt;173.100006&lt;/td&gt;
+      &lt;td&gt;174.800003&lt;/td&gt;
+      &lt;td&gt;171.770004&lt;/td&gt;
+      &lt;td&gt;174.580002&lt;/td&gt;
+      &lt;td&gt;174.580002&lt;/td&gt;
+      &lt;td&gt;55392400&lt;/td&gt;
+      &lt;td&gt;AMAZON&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;2024-02-23&lt;/th&gt;
+      &lt;td&gt;174.279999&lt;/td&gt;
+      &lt;td&gt;175.750000&lt;/td&gt;
+      &lt;td&gt;173.699997&lt;/td&gt;
+      &lt;td&gt;174.990005&lt;/td&gt;
+      &lt;td&gt;174.990005&lt;/td&gt;
+      &lt;td&gt;59715200&lt;/td&gt;
+      &lt;td&gt;AMAZON&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;2024-02-26&lt;/th&gt;
+      &lt;td&gt;175.699997&lt;/td&gt;
+      &lt;td&gt;176.369995&lt;/td&gt;
+      &lt;td&gt;174.259995&lt;/td&gt;
+      &lt;td&gt;174.729996&lt;/td&gt;
+      &lt;td&gt;174.729996&lt;/td&gt;
+      &lt;td&gt;44368600&lt;/td&gt;
+      &lt;td&gt;AMAZON&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;2024-02-27&lt;/th&gt;
+      &lt;td&gt;174.080002&lt;/td&gt;
+      &lt;td&gt;174.619995&lt;/td&gt;
+      &lt;td&gt;172.860001&lt;/td&gt;
+      &lt;td&gt;173.539993&lt;/td&gt;
+      &lt;td&gt;173.539993&lt;/td&gt;
+      &lt;td&gt;31141700&lt;/td&gt;
+      &lt;td&gt;AMAZON&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;2024-02-28&lt;/th&gt;
+      &lt;td&gt;172.440002&lt;/td&gt;
+      &lt;td&gt;174.050003&lt;/td&gt;
+      &lt;td&gt;172.270004&lt;/td&gt;
+      &lt;td&gt;173.160004&lt;/td&gt;
+      &lt;td&gt;173.160004&lt;/td&gt;
+      &lt;td&gt;28180500&lt;/td&gt;
+      &lt;td&gt;AMAZON&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;2024-02-29&lt;/th&gt;
+      &lt;td&gt;173.009995&lt;/td&gt;
+      &lt;td&gt;177.220001&lt;/td&gt;
+      &lt;td&gt;172.850006&lt;/td&gt;
+      &lt;td&gt;176.759995&lt;/td&gt;
+      &lt;td&gt;176.759995&lt;/td&gt;
+      &lt;td&gt;53805400&lt;/td&gt;
+      &lt;td&gt;AMAZON&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;2024-03-01&lt;/th&gt;
+      &lt;td&gt;176.750000&lt;/td&gt;
+      &lt;td&gt;178.729996&lt;/td&gt;
+      &lt;td&gt;176.070007&lt;/td&gt;
+      &lt;td&gt;178.220001&lt;/td&gt;
+      &lt;td&gt;178.220001&lt;/td&gt;
+      &lt;td&gt;31956200&lt;/td&gt;
+      &lt;td&gt;AMAZON&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;2024-03-04&lt;/th&gt;
+      &lt;td&gt;177.529999&lt;/td&gt;
+      &lt;td&gt;180.139999&lt;/td&gt;
+      &lt;td&gt;177.490005&lt;/td&gt;
+      &lt;td&gt;177.580002&lt;/td&gt;
+      &lt;td&gt;177.580002&lt;/td&gt;
+      &lt;td&gt;36357160&lt;/td&gt;
+      &lt;td&gt;AMAZON&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+</code></pre> <p>::: :::</p> <p>::: {#2c53382f .cell .markdown papermill=”{"duration":1.3271e-2,"end_time":"2023-01-31T12:53:53.994686","exception":false,"start_time":"2023-01-31T12:53:53.981415","status":"completed"}” tags=”[]”} Reviewing the content of our data, we can see that the data is numeric and the date is the index of the data. Notice also that weekends are missing from the records. :::</p> <p>::: {#d60ba9bf .cell .markdown papermill=”{"duration":1.261e-2,"end_time":"2023-01-31T12:53:54.020497","exception":false,"start_time":"2023-01-31T12:53:54.007887","status":"completed"}” tags=”[]”}</p> <h2 id="descriptive-statistics-about-the-data">Descriptive Statistics about the Data</h2> <p><code class="language-plaintext highlighter-rouge">.describe()</code> generates descriptive statistics. Descriptive statistics include those that summarize the central tendency, dispersion, and shape of a dataset’s distribution, excluding <code class="language-plaintext highlighter-rouge">NaN</code> values.</p> <p>Analyzes both numeric and object series, as well as <code class="language-plaintext highlighter-rouge">DataFrame</code> column sets of mixed data types. The output will vary depending on what is provided. Refer to the notes below for more detail. :::</p> <p>::: {#60465e63 .cell .code execution_count=”3” execution=”{"iopub.execute_input":"2023-01-31T12:53:54.049732Z","iopub.status.busy":"2023-01-31T12:53:54.048892Z","iopub.status.idle":"2023-01-31T12:53:54.079662Z","shell.execute_reply":"2023-01-31T12:53:54.078450Z"}” papermill=”{"duration":4.9011e-2,"end_time":"2023-01-31T12:53:54.082514","exception":false,"start_time":"2023-01-31T12:53:54.033503","status":"completed"}” tags=”[]”}</p> <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Summary Stats
+</span><span class="n">AAPL</span><span class="p">.</span><span class="nf">describe</span><span class="p">()</span>
+</code></pre></div></div> <p>::: {.output .execute_result execution_count=”3”}</p> <pre><code class="language-{=html}">&lt;div&gt;
+&lt;style scoped&gt;
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+&lt;/style&gt;
+&lt;table border="1" class="dataframe"&gt;
+  &lt;thead&gt;
+    &lt;tr style="text-align: right;"&gt;
+      &lt;th&gt;&lt;/th&gt;
+      &lt;th&gt;Open&lt;/th&gt;
+      &lt;th&gt;High&lt;/th&gt;
+      &lt;th&gt;Low&lt;/th&gt;
+      &lt;th&gt;Close&lt;/th&gt;
+      &lt;th&gt;Adj Close&lt;/th&gt;
+      &lt;th&gt;Volume&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;th&gt;count&lt;/th&gt;
+      &lt;td&gt;251.000000&lt;/td&gt;
+      &lt;td&gt;251.000000&lt;/td&gt;
+      &lt;td&gt;251.000000&lt;/td&gt;
+      &lt;td&gt;251.000000&lt;/td&gt;
+      &lt;td&gt;251.000000&lt;/td&gt;
+      &lt;td&gt;2.510000e+02&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;mean&lt;/th&gt;
+      &lt;td&gt;152.117251&lt;/td&gt;
+      &lt;td&gt;154.227052&lt;/td&gt;
+      &lt;td&gt;150.098406&lt;/td&gt;
+      &lt;td&gt;152.240797&lt;/td&gt;
+      &lt;td&gt;151.861737&lt;/td&gt;
+      &lt;td&gt;8.545738e+07&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;std&lt;/th&gt;
+      &lt;td&gt;13.239204&lt;/td&gt;
+      &lt;td&gt;13.124055&lt;/td&gt;
+      &lt;td&gt;13.268053&lt;/td&gt;
+      &lt;td&gt;13.255593&lt;/td&gt;
+      &lt;td&gt;13.057870&lt;/td&gt;
+      &lt;td&gt;2.257398e+07&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;min&lt;/th&gt;
+      &lt;td&gt;126.010002&lt;/td&gt;
+      &lt;td&gt;127.769997&lt;/td&gt;
+      &lt;td&gt;124.169998&lt;/td&gt;
+      &lt;td&gt;125.019997&lt;/td&gt;
+      &lt;td&gt;125.019997&lt;/td&gt;
+      &lt;td&gt;3.519590e+07&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;25%&lt;/th&gt;
+      &lt;td&gt;142.110001&lt;/td&gt;
+      &lt;td&gt;143.854996&lt;/td&gt;
+      &lt;td&gt;139.949997&lt;/td&gt;
+      &lt;td&gt;142.464996&lt;/td&gt;
+      &lt;td&gt;142.190201&lt;/td&gt;
+      &lt;td&gt;7.027710e+07&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;50%&lt;/th&gt;
+      &lt;td&gt;150.089996&lt;/td&gt;
+      &lt;td&gt;151.990005&lt;/td&gt;
+      &lt;td&gt;148.199997&lt;/td&gt;
+      &lt;td&gt;150.649994&lt;/td&gt;
+      &lt;td&gt;150.400497&lt;/td&gt;
+      &lt;td&gt;8.100050e+07&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;75%&lt;/th&gt;
+      &lt;td&gt;163.434998&lt;/td&gt;
+      &lt;td&gt;165.835007&lt;/td&gt;
+      &lt;td&gt;160.879997&lt;/td&gt;
+      &lt;td&gt;163.629997&lt;/td&gt;
+      &lt;td&gt;163.200417&lt;/td&gt;
+      &lt;td&gt;9.374540e+07&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;max&lt;/th&gt;
+      &lt;td&gt;178.550003&lt;/td&gt;
+      &lt;td&gt;179.610001&lt;/td&gt;
+      &lt;td&gt;176.699997&lt;/td&gt;
+      &lt;td&gt;178.960007&lt;/td&gt;
+      &lt;td&gt;178.154037&lt;/td&gt;
+      &lt;td&gt;1.826020e+08&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+</code></pre> <p>::: :::</p> <p>::: {#47806cf9 .cell .markdown papermill=”{"duration":1.2936e-2,"end_time":"2023-01-31T12:53:54.109754","exception":false,"start_time":"2023-01-31T12:53:54.096818","status":"completed"}” tags=”[]”} We have only 255 records in one year because weekends are not included in the data. :::</p> <p>::: {#b419c5b2 .cell .markdown papermill=”{"duration":1.3036e-2,"end_time":"2023-01-31T12:53:54.136260","exception":false,"start_time":"2023-01-31T12:53:54.123224","status":"completed"}” tags=”[]”}</p> <h2 id="information-about-the-data">Information About the Data</h2> <p><code class="language-plaintext highlighter-rouge">.info()</code> method prints information about a DataFrame including the index <code class="language-plaintext highlighter-rouge">dtype</code> and columns, non-null values, and memory usage. :::</p> <p>::: {#93783cc3 .cell .code execution_count=”4” execution=”{"iopub.execute_input":"2023-01-31T12:53:54.164746Z","iopub.status.busy":"2023-01-31T12:53:54.164367Z","iopub.status.idle":"2023-01-31T12:53:54.181713Z","shell.execute_reply":"2023-01-31T12:53:54.180421Z"}” papermill=”{"duration":3.4359e-2,"end_time":"2023-01-31T12:53:54.183931","exception":false,"start_time":"2023-01-31T12:53:54.149572","status":"completed"}” tags=”[]”}</p> <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># General info
+</span><span class="n">AAPL</span><span class="p">.</span><span class="nf">info</span><span class="p">()</span>
+</code></pre></div></div> <p>::: {.output .stream .stdout} &lt;class ‘pandas.core.frame.DataFrame’&gt; DatetimeIndex: 251 entries, 2022-01-31 00:00:00-05:00 to 2023-01-30 00:00:00-05:00 Data columns (total 7 columns): # Column Non-Null Count Dtype<br> — —— ————– —–<br> 0 Open 251 non-null float64 1 High 251 non-null float64 2 Low 251 non-null float64 3 Close 251 non-null float64 4 Adj Close 251 non-null float64 5 Volume 251 non-null int64<br> 6 company_name 251 non-null object dtypes: float64(5), int64(1), object(1) memory usage: 23.8+ KB ::: :::</p> <p>::: {#faf6d2fa .cell .markdown papermill=”{"duration":1.3371e-2,"end_time":"2023-01-31T12:53:54.210787","exception":false,"start_time":"2023-01-31T12:53:54.197416","status":"completed"}” tags=”[]”}</p> <h2 id="closing-price">Closing Price</h2> <p>The closing price is the last price at which the stock is traded during the regular trading day. A stock’s closing price is the standard benchmark used by investors to track its performance over time. :::</p> <p>::: {#b13ddab8 .cell .code execution_count=”2” execution=”{"iopub.execute_input":"2023-01-31T12:53:54.239480Z","iopub.status.busy":"2023-01-31T12:53:54.238719Z","iopub.status.idle":"2023-01-31T12:53:55.692901Z","shell.execute_reply":"2023-01-31T12:53:55.691450Z"}” papermill=”{"duration":1.472316,"end_time":"2023-01-31T12:53:55.696413","exception":false,"start_time":"2023-01-31T12:53:54.224097","status":"completed"}” tags=”[]”}</p> <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Let's see a historical view of the closing price
+</span><span class="n">plt</span><span class="p">.</span><span class="nf">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+<span class="n">plt</span><span class="p">.</span><span class="nf">subplots_adjust</span><span class="p">(</span><span class="n">top</span><span class="o">=</span><span class="mf">1.25</span><span class="p">,</span> <span class="n">bottom</span><span class="o">=</span><span class="mf">1.2</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">company</span> <span class="ow">in</span> <span class="nf">enumerate</span><span class="p">(</span><span class="n">company_list</span><span class="p">,</span> <span class="mi">1</span><span class="p">):</span>
+    <span class="n">plt</span><span class="p">.</span><span class="nf">subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span>
+    <span class="n">company</span><span class="p">[</span><span class="sh">'</span><span class="s">Adj Close</span><span class="sh">'</span><span class="p">].</span><span class="nf">plot</span><span class="p">()</span>
+    <span class="n">plt</span><span class="p">.</span><span class="nf">ylabel</span><span class="p">(</span><span class="sh">'</span><span class="s">Adj Close</span><span class="sh">'</span><span class="p">)</span>
+    <span class="n">plt</span><span class="p">.</span><span class="nf">xlabel</span><span class="p">(</span><span class="bp">None</span><span class="p">)</span>
+    <span class="n">plt</span><span class="p">.</span><span class="nf">title</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Closing Price of </span><span class="si">{</span><span class="n">tech_list</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+    
+<span class="n">plt</span><span class="p">.</span><span class="nf">tight_layout</span><span class="p">()</span>
+</code></pre></div></div> <p>::: {.output .display_data} <img src="vertopal_a579fb8fa69546c39551d8bfbeb13562/68f2406c94a63e3aa8fa55faf615805cf9f5fc0f.png" alt=""> ::: :::</p> <p>::: {#247963fc .cell .markdown papermill=”{"duration":1.5215e-2,"end_time":"2023-01-31T12:53:55.728097","exception":false,"start_time":"2023-01-31T12:53:55.712882","status":"completed"}” tags=”[]”}</p> <h2 id="volume-of-sales">Volume of Sales</h2> <p>Volume is the amount of an asset or security that changes hands over some period of time, often over the course of a day. For instance, the stock trading volume would refer to the number of shares of security traded between its daily open and close. Trading volume, and changes to volume over the course of time, are important inputs for technical traders. :::</p> <p>::: {#40a52d2f .cell .code execution_count=”6” execution=”{"iopub.execute_input":"2023-01-31T12:53:55.763022Z","iopub.status.busy":"2023-01-31T12:53:55.762611Z","iopub.status.idle":"2023-01-31T12:53:57.175013Z","shell.execute_reply":"2023-01-31T12:53:57.173744Z"}” papermill=”{"duration":1.4345,"end_time":"2023-01-31T12:53:57.178658","exception":false,"start_time":"2023-01-31T12:53:55.744158","status":"completed"}” tags=”[]”}</p> <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Now let's plot the total volume of stock being traded each day
+</span><span class="n">plt</span><span class="p">.</span><span class="nf">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+<span class="n">plt</span><span class="p">.</span><span class="nf">subplots_adjust</span><span class="p">(</span><span class="n">top</span><span class="o">=</span><span class="mf">1.25</span><span class="p">,</span> <span class="n">bottom</span><span class="o">=</span><span class="mf">1.2</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">company</span> <span class="ow">in</span> <span class="nf">enumerate</span><span class="p">(</span><span class="n">company_list</span><span class="p">,</span> <span class="mi">1</span><span class="p">):</span>
+    <span class="n">plt</span><span class="p">.</span><span class="nf">subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span>
+    <span class="n">company</span><span class="p">[</span><span class="sh">'</span><span class="s">Volume</span><span class="sh">'</span><span class="p">].</span><span class="nf">plot</span><span class="p">()</span>
+    <span class="n">plt</span><span class="p">.</span><span class="nf">ylabel</span><span class="p">(</span><span class="sh">'</span><span class="s">Volume</span><span class="sh">'</span><span class="p">)</span>
+    <span class="n">plt</span><span class="p">.</span><span class="nf">xlabel</span><span class="p">(</span><span class="bp">None</span><span class="p">)</span>
+    <span class="n">plt</span><span class="p">.</span><span class="nf">title</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Sales Volume for </span><span class="si">{</span><span class="n">tech_list</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+    
+<span class="n">plt</span><span class="p">.</span><span class="nf">tight_layout</span><span class="p">()</span>
+</code></pre></div></div> <p>::: {.output .display_data} <img src="vertopal_a579fb8fa69546c39551d8bfbeb13562/a14c01c9e883b2afed95ac1f963b31594d3d7e19.png" alt=""> ::: :::</p> <p>::: {#b443cd3d .cell .markdown papermill=”{"duration":1.7594e-2,"end_time":"2023-01-31T12:53:57.214684","exception":false,"start_time":"2023-01-31T12:53:57.197090","status":"completed"}” tags=”[]”} Now that we've seen the visualizations for the closing price and the volume traded each day, let's go ahead and caculate the moving average for the stock. :::</p> <p>::: {#8f2b7c0a .cell .markdown papermill=”{"duration":1.7533e-2,"end_time":"2023-01-31T12:53:57.249955","exception":false,"start_time":"2023-01-31T12:53:57.232422","status":"completed"}” tags=”[]”}</p> <h1 id="2-what-was-the-moving-average-of-the-various-stocks-2-what-was-the-moving-average-of-the-various-stocks">2. What was the moving average of the various stocks? {#2-what-was-the-moving-average-of-the-various-stocks}</h1> <p>The moving average (MA) is a simple technical analysis tool that smooths out price data by creating a constantly updated average price. The average is taken over a specific period of time, like 10 days, 20 minutes, 30 weeks, or any time period the trader chooses. :::</p> <p>::: {#70c00b63 .cell .code execution_count=”7” execution=”{"iopub.execute_input":"2023-01-31T12:53:57.288379Z","iopub.status.busy":"2023-01-31T12:53:57.287938Z","iopub.status.idle":"2023-01-31T12:53:59.042433Z","shell.execute_reply":"2023-01-31T12:53:59.041484Z"}” papermill=”{"duration":1.779798,"end_time":"2023-01-31T12:53:59.047606","exception":false,"start_time":"2023-01-31T12:53:57.267808","status":"completed"}” tags=”[]”}</p> <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">ma_day</span> <span class="o">=</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">50</span><span class="p">]</span>
+
+<span class="k">for</span> <span class="n">ma</span> <span class="ow">in</span> <span class="n">ma_day</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">company</span> <span class="ow">in</span> <span class="n">company_list</span><span class="p">:</span>
+        <span class="n">column_name</span> <span class="o">=</span> <span class="sa">f</span><span class="sh">"</span><span class="s">MA for </span><span class="si">{</span><span class="n">ma</span><span class="si">}</span><span class="s"> days</span><span class="sh">"</span>
+        <span class="n">company</span><span class="p">[</span><span class="n">column_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">company</span><span class="p">[</span><span class="sh">'</span><span class="s">Adj Close</span><span class="sh">'</span><span class="p">].</span><span class="nf">rolling</span><span class="p">(</span><span class="n">ma</span><span class="p">).</span><span class="nf">mean</span><span class="p">()</span>
+        
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="p">.</span><span class="nf">subplots</span><span class="p">(</span><span class="n">nrows</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">ncols</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">fig</span><span class="p">.</span><span class="nf">set_figheight</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">fig</span><span class="p">.</span><span class="nf">set_figwidth</span><span class="p">(</span><span class="mi">15</span><span class="p">)</span>
+
+<span class="n">AAPL</span><span class="p">[[</span><span class="sh">'</span><span class="s">Adj Close</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">MA for 10 days</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">MA for 20 days</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">MA for 50 days</span><span class="sh">'</span><span class="p">]].</span><span class="nf">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">].</span><span class="nf">set_title</span><span class="p">(</span><span class="sh">'</span><span class="s">APPLE</span><span class="sh">'</span><span class="p">)</span>
+
+<span class="n">GOOG</span><span class="p">[[</span><span class="sh">'</span><span class="s">Adj Close</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">MA for 10 days</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">MA for 20 days</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">MA for 50 days</span><span class="sh">'</span><span class="p">]].</span><span class="nf">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">].</span><span class="nf">set_title</span><span class="p">(</span><span class="sh">'</span><span class="s">GOOGLE</span><span class="sh">'</span><span class="p">)</span>
+
+<span class="n">MSFT</span><span class="p">[[</span><span class="sh">'</span><span class="s">Adj Close</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">MA for 10 days</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">MA for 20 days</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">MA for 50 days</span><span class="sh">'</span><span class="p">]].</span><span class="nf">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">].</span><span class="nf">set_title</span><span class="p">(</span><span class="sh">'</span><span class="s">MICROSOFT</span><span class="sh">'</span><span class="p">)</span>
+
+<span class="n">AMZN</span><span class="p">[[</span><span class="sh">'</span><span class="s">Adj Close</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">MA for 10 days</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">MA for 20 days</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">MA for 50 days</span><span class="sh">'</span><span class="p">]].</span><span class="nf">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">].</span><span class="nf">set_title</span><span class="p">(</span><span class="sh">'</span><span class="s">AMAZON</span><span class="sh">'</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="p">.</span><span class="nf">tight_layout</span><span class="p">()</span>
+</code></pre></div></div> <p>::: {.output .display_data} <img src="vertopal_a579fb8fa69546c39551d8bfbeb13562/70b00d56c3196deadd40a26bee6120ef86d82eb1.png" alt=""> ::: :::</p> <p>::: {#deb18236 .cell .markdown papermill=”{"duration":2.3365e-2,"end_time":"2023-01-31T12:53:59.094496","exception":false,"start_time":"2023-01-31T12:53:59.071131","status":"completed"}” tags=”[]”} We see in the graph that the best values to measure the moving average are 10 and 20 days because we still capture trends in the data without noise. :::</p> <p>::: {#6aa540d2 .cell .markdown papermill=”{"duration":2.1563e-2,"end_time":"2023-01-31T12:53:59.137965","exception":false,"start_time":"2023-01-31T12:53:59.116402","status":"completed"}” tags=”[]”}</p> <h1 id="3-what-was-the-daily-return-of-the-stock-on-average-3-what-was-the-daily-return-of-the-stock-on-average">3. What was the daily return of the stock on average? {#3-what-was-the-daily-return-of-the-stock-on-average}</h1> <p>:::</p> <p>::: {#921824c7 .cell .markdown papermill=”{"duration":2.1726e-2,"end_time":"2023-01-31T12:53:59.182189","exception":false,"start_time":"2023-01-31T12:53:59.160463","status":"completed"}” tags=”[]”} Now that we've done some baseline analysis, let's go ahead and dive a little deeper. We're now going to analyze the risk of the stock. In order to do so we'll need to take a closer look at the daily changes of the stock, and not just its absolute value. Let's go ahead and use pandas to retrieve teh daily returns for the Apple stock. :::</p> <p>::: {#b9de09fe .cell .code execution_count=”8” execution=”{"iopub.execute_input":"2023-01-31T12:53:59.227869Z","iopub.status.busy":"2023-01-31T12:53:59.227496Z","iopub.status.idle":"2023-01-31T12:54:00.704908Z","shell.execute_reply":"2023-01-31T12:54:00.703635Z"}” papermill=”{"duration":1.505263,"end_time":"2023-01-31T12:54:00.709370","exception":false,"start_time":"2023-01-31T12:53:59.204107","status":"completed"}” tags=”[]”}</p> <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># We'll use pct_change to find the percent change for each day
+</span><span class="k">for</span> <span class="n">company</span> <span class="ow">in</span> <span class="n">company_list</span><span class="p">:</span>
+    <span class="n">company</span><span class="p">[</span><span class="sh">'</span><span class="s">Daily Return</span><span class="sh">'</span><span class="p">]</span> <span class="o">=</span> <span class="n">company</span><span class="p">[</span><span class="sh">'</span><span class="s">Adj Close</span><span class="sh">'</span><span class="p">].</span><span class="nf">pct_change</span><span class="p">()</span>
+
+<span class="c1"># Then we'll plot the daily return percentage
+</span><span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="p">.</span><span class="nf">subplots</span><span class="p">(</span><span class="n">nrows</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">ncols</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">fig</span><span class="p">.</span><span class="nf">set_figheight</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">fig</span><span class="p">.</span><span class="nf">set_figwidth</span><span class="p">(</span><span class="mi">15</span><span class="p">)</span>
+
+<span class="n">AAPL</span><span class="p">[</span><span class="sh">'</span><span class="s">Daily Return</span><span class="sh">'</span><span class="p">].</span><span class="nf">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span> <span class="n">legend</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="sh">'</span><span class="s">--</span><span class="sh">'</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="sh">'</span><span class="s">o</span><span class="sh">'</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">].</span><span class="nf">set_title</span><span class="p">(</span><span class="sh">'</span><span class="s">APPLE</span><span class="sh">'</span><span class="p">)</span>
+
+<span class="n">GOOG</span><span class="p">[</span><span class="sh">'</span><span class="s">Daily Return</span><span class="sh">'</span><span class="p">].</span><span class="nf">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span> <span class="n">legend</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="sh">'</span><span class="s">--</span><span class="sh">'</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="sh">'</span><span class="s">o</span><span class="sh">'</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">].</span><span class="nf">set_title</span><span class="p">(</span><span class="sh">'</span><span class="s">GOOGLE</span><span class="sh">'</span><span class="p">)</span>
+
+<span class="n">MSFT</span><span class="p">[</span><span class="sh">'</span><span class="s">Daily Return</span><span class="sh">'</span><span class="p">].</span><span class="nf">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span> <span class="n">legend</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="sh">'</span><span class="s">--</span><span class="sh">'</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="sh">'</span><span class="s">o</span><span class="sh">'</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">].</span><span class="nf">set_title</span><span class="p">(</span><span class="sh">'</span><span class="s">MICROSOFT</span><span class="sh">'</span><span class="p">)</span>
+
+<span class="n">AMZN</span><span class="p">[</span><span class="sh">'</span><span class="s">Daily Return</span><span class="sh">'</span><span class="p">].</span><span class="nf">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span> <span class="n">legend</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="sh">'</span><span class="s">--</span><span class="sh">'</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="sh">'</span><span class="s">o</span><span class="sh">'</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">].</span><span class="nf">set_title</span><span class="p">(</span><span class="sh">'</span><span class="s">AMAZON</span><span class="sh">'</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="p">.</span><span class="nf">tight_layout</span><span class="p">()</span>
+</code></pre></div></div> <p>::: {.output .display_data} <img src="vertopal_a579fb8fa69546c39551d8bfbeb13562/d636a18506e84e0a2ca9832ba294d9e65421aafe.png" alt=""> ::: :::</p> <p>::: {#b4947a4f .cell .markdown papermill=”{"duration":2.583e-2,"end_time":"2023-01-31T12:54:00.762088","exception":false,"start_time":"2023-01-31T12:54:00.736258","status":"completed"}” tags=”[]”} Great, now let's get an overall look at the average daily return using a histogram. We'll use seaborn to create both a histogram and kde plot on the same figure. :::</p> <p>::: {#2740efe4 .cell .code execution_count=”9” execution=”{"iopub.execute_input":"2023-01-31T12:54:00.814667Z","iopub.status.busy":"2023-01-31T12:54:00.814276Z","iopub.status.idle":"2023-01-31T12:54:02.165765Z","shell.execute_reply":"2023-01-31T12:54:02.164503Z"}” papermill=”{"duration":1.380741,"end_time":"2023-01-31T12:54:02.168271","exception":false,"start_time":"2023-01-31T12:54:00.787530","status":"completed"}” tags=”[]”}</p> <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">plt</span><span class="p">.</span><span class="nf">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">9</span><span class="p">))</span>
+
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">company</span> <span class="ow">in</span> <span class="nf">enumerate</span><span class="p">(</span><span class="n">company_list</span><span class="p">,</span> <span class="mi">1</span><span class="p">):</span>
+    <span class="n">plt</span><span class="p">.</span><span class="nf">subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span>
+    <span class="n">company</span><span class="p">[</span><span class="sh">'</span><span class="s">Daily Return</span><span class="sh">'</span><span class="p">].</span><span class="nf">hist</span><span class="p">(</span><span class="n">bins</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
+    <span class="n">plt</span><span class="p">.</span><span class="nf">xlabel</span><span class="p">(</span><span class="sh">'</span><span class="s">Daily Return</span><span class="sh">'</span><span class="p">)</span>
+    <span class="n">plt</span><span class="p">.</span><span class="nf">ylabel</span><span class="p">(</span><span class="sh">'</span><span class="s">Counts</span><span class="sh">'</span><span class="p">)</span>
+    <span class="n">plt</span><span class="p">.</span><span class="nf">title</span><span class="p">(</span><span class="sa">f</span><span class="sh">'</span><span class="si">{</span><span class="n">company_name</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="sh">'</span><span class="p">)</span>
+    
+<span class="n">plt</span><span class="p">.</span><span class="nf">tight_layout</span><span class="p">()</span>
+</code></pre></div></div> <p>::: {.output .display_data} <img src="vertopal_a579fb8fa69546c39551d8bfbeb13562/17f0ff2ffd4cb148299a8404264b7e8cefb056c8.png" alt=""> ::: :::</p> <p>::: {#dea5b30a .cell .markdown papermill=”{"duration":2.5887e-2,"end_time":"2023-01-31T12:54:02.220637","exception":false,"start_time":"2023-01-31T12:54:02.194750","status":"completed"}” tags=”[]”}</p> <h1 id="4-what-was-the-correlation-between-different-stocks-closing-prices-4-what-was-the-correlation-between-different-stocks-closing-prices">4. What was the correlation between different stocks closing prices? {#4-what-was-the-correlation-between-different-stocks-closing-prices}</h1> <p>:::</p> <p>::: {#993377ef .cell .markdown papermill=”{"duration":2.5914e-2,"end_time":"2023-01-31T12:54:02.272691","exception":false,"start_time":"2023-01-31T12:54:02.246777","status":"completed"}” tags=”[]”} Correlation is a statistic that measures the degree to which two variables move in relation to each other which has a value that must fall between -1.0 and +1.0. Correlation measures association, but doesn’t show if x causes y or vice versa — or if the association is caused by a third factor[1].</p> <p>Now what if we wanted to analyze the returns of all the stocks in our list? Let's go ahead and build a DataFrame with all the ['Close'] columns for each of the stocks dataframes. :::</p> <p>::: {#1841b077 .cell .code execution_count=”10” execution=”{"iopub.execute_input":"2023-01-31T12:54:02.327584Z","iopub.status.busy":"2023-01-31T12:54:02.327175Z","iopub.status.idle":"2023-01-31T12:54:02.873181Z","shell.execute_reply":"2023-01-31T12:54:02.872046Z"}” papermill=”{"duration":0.576523,"end_time":"2023-01-31T12:54:02.875608","exception":false,"start_time":"2023-01-31T12:54:02.299085","status":"completed"}” tags=”[]”}</p> <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Grab all the closing prices for the tech stock list into one DataFrame
+</span>
+<span class="n">closing_df</span> <span class="o">=</span> <span class="n">pdr</span><span class="p">.</span><span class="nf">get_data_yahoo</span><span class="p">(</span><span class="n">tech_list</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="n">end</span><span class="p">)[</span><span class="sh">'</span><span class="s">Adj Close</span><span class="sh">'</span><span class="p">]</span>
+
+<span class="c1"># Make a new tech returns DataFrame
+</span><span class="n">tech_rets</span> <span class="o">=</span> <span class="n">closing_df</span><span class="p">.</span><span class="nf">pct_change</span><span class="p">()</span>
+<span class="n">tech_rets</span><span class="p">.</span><span class="nf">head</span><span class="p">()</span>
+</code></pre></div></div> <p>::: {.output .stream .stdout} [<strong>**</strong><strong>**</strong><strong>**</strong><strong><em>100%</em></strong><strong>**</strong><strong>**</strong><strong>**</strong>**] 4 of 4 completed :::</p> <p>::: {.output .execute_result execution_count=”10”}</p> <pre><code class="language-{=html}">&lt;div&gt;
+&lt;style scoped&gt;
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+&lt;/style&gt;
+&lt;table border="1" class="dataframe"&gt;
+  &lt;thead&gt;
+    &lt;tr style="text-align: right;"&gt;
+      &lt;th&gt;&lt;/th&gt;
+      &lt;th&gt;AAPL&lt;/th&gt;
+      &lt;th&gt;AMZN&lt;/th&gt;
+      &lt;th&gt;GOOG&lt;/th&gt;
+      &lt;th&gt;MSFT&lt;/th&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Date&lt;/th&gt;
+      &lt;th&gt;&lt;/th&gt;
+      &lt;th&gt;&lt;/th&gt;
+      &lt;th&gt;&lt;/th&gt;
+      &lt;th&gt;&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;th&gt;2022-01-31 00:00:00-05:00&lt;/th&gt;
+      &lt;td&gt;NaN&lt;/td&gt;
+      &lt;td&gt;NaN&lt;/td&gt;
+      &lt;td&gt;NaN&lt;/td&gt;
+      &lt;td&gt;NaN&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;2022-02-01 00:00:00-05:00&lt;/th&gt;
+      &lt;td&gt;-0.000973&lt;/td&gt;
+      &lt;td&gt;0.010831&lt;/td&gt;
+      &lt;td&gt;0.016065&lt;/td&gt;
+      &lt;td&gt;-0.007139&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;2022-02-02 00:00:00-05:00&lt;/th&gt;
+      &lt;td&gt;0.007044&lt;/td&gt;
+      &lt;td&gt;-0.003843&lt;/td&gt;
+      &lt;td&gt;0.073674&lt;/td&gt;
+      &lt;td&gt;0.015222&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;2022-02-03 00:00:00-05:00&lt;/th&gt;
+      &lt;td&gt;-0.016720&lt;/td&gt;
+      &lt;td&gt;-0.078128&lt;/td&gt;
+      &lt;td&gt;-0.036383&lt;/td&gt;
+      &lt;td&gt;-0.038952&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;2022-02-04 00:00:00-05:00&lt;/th&gt;
+      &lt;td&gt;-0.001679&lt;/td&gt;
+      &lt;td&gt;0.135359&lt;/td&gt;
+      &lt;td&gt;0.002562&lt;/td&gt;
+      &lt;td&gt;0.015568&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+</code></pre> <p>::: :::</p> <p>::: {#6e16df5d .cell .markdown papermill=”{"duration":2.6148e-2,"end_time":"2023-01-31T12:54:02.928465","exception":false,"start_time":"2023-01-31T12:54:02.902317","status":"completed"}” tags=”[]”} Now we can compare the daily percentage return of two stocks to check how correlated. First let's see a sotck compared to itself. :::</p> <p>::: {#aa4a48af .cell .code execution_count=”11” execution=”{"iopub.execute_input":"2023-01-31T12:54:02.983652Z","iopub.status.busy":"2023-01-31T12:54:02.982615Z","iopub.status.idle":"2023-01-31T12:54:03.610584Z","shell.execute_reply":"2023-01-31T12:54:03.609703Z"}” papermill=”{"duration":0.657839,"end_time":"2023-01-31T12:54:03.612759","exception":false,"start_time":"2023-01-31T12:54:02.954920","status":"completed"}” tags=”[]”}</p> <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Comparing Google to itself should show a perfectly linear relationship
+</span><span class="n">sns</span><span class="p">.</span><span class="nf">jointplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="sh">'</span><span class="s">GOOG</span><span class="sh">'</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="sh">'</span><span class="s">GOOG</span><span class="sh">'</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">tech_rets</span><span class="p">,</span> <span class="n">kind</span><span class="o">=</span><span class="sh">'</span><span class="s">scatter</span><span class="sh">'</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="sh">'</span><span class="s">seagreen</span><span class="sh">'</span><span class="p">)</span>
+</code></pre></div></div> <p>::: {.output .execute_result execution_count=”11”} &lt;seaborn.axisgrid.JointGrid at 0x7f63e33d4990&gt; :::</p> <p>::: {.output .display_data} <img src="vertopal_a579fb8fa69546c39551d8bfbeb13562/07e379a8fe29b77476f38199a06deb922e5a6304.png" alt=""> ::: :::</p> <p>::: {#9771e36a .cell .code execution_count=”12” execution=”{"iopub.execute_input":"2023-01-31T12:54:03.671117Z","iopub.status.busy":"2023-01-31T12:54:03.670077Z","iopub.status.idle":"2023-01-31T12:54:04.290381Z","shell.execute_reply":"2023-01-31T12:54:04.289200Z"}” papermill=”{"duration":0.651554,"end_time":"2023-01-31T12:54:04.293282","exception":false,"start_time":"2023-01-31T12:54:03.641728","status":"completed"}” tags=”[]”}</p> <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># We'll use joinplot to compare the daily returns of Google and Microsoft
+</span><span class="n">sns</span><span class="p">.</span><span class="nf">jointplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="sh">'</span><span class="s">GOOG</span><span class="sh">'</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="sh">'</span><span class="s">MSFT</span><span class="sh">'</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">tech_rets</span><span class="p">,</span> <span class="n">kind</span><span class="o">=</span><span class="sh">'</span><span class="s">scatter</span><span class="sh">'</span><span class="p">)</span>
+</code></pre></div></div> <p>::: {.output .execute_result execution_count=”12”} &lt;seaborn.axisgrid.JointGrid at 0x7f63dba49210&gt; :::</p> <p>::: {.output .display_data} <img src="vertopal_a579fb8fa69546c39551d8bfbeb13562/2f01d104f93f54520edcd1cdfddaf337ce654134.png" alt=""> ::: :::</p> <p>::: {#adc87028 .cell .markdown papermill=”{"duration":3.0214e-2,"end_time":"2023-01-31T12:54:04.353407","exception":false,"start_time":"2023-01-31T12:54:04.323193","status":"completed"}” tags=”[]”} So now we can see that if two stocks are perfectly (and positivley) correlated with each other a linear relationship bewteen its daily return values should occur.</p> <p>Seaborn and pandas make it very easy to repeat this comparison analysis for every possible combination of stocks in our technology stock ticker list. We can use sns.pairplot() to automatically create this plot :::</p> <p>::: {#4e87eb1a .cell .code execution_count=”13” execution=”{"iopub.execute_input":"2023-01-31T12:54:04.411519Z","iopub.status.busy":"2023-01-31T12:54:04.410429Z","iopub.status.idle":"2023-01-31T12:54:08.821289Z","shell.execute_reply":"2023-01-31T12:54:08.820320Z"}” papermill=”{"duration":4.442333,"end_time":"2023-01-31T12:54:08.823722","exception":false,"start_time":"2023-01-31T12:54:04.381389","status":"completed"}” tags=”[]”}</p> <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># We can simply call pairplot on our DataFrame for an automatic visual analysis 
+# of all the comparisons
+</span>
+<span class="n">sns</span><span class="p">.</span><span class="nf">pairplot</span><span class="p">(</span><span class="n">tech_rets</span><span class="p">,</span> <span class="n">kind</span><span class="o">=</span><span class="sh">'</span><span class="s">reg</span><span class="sh">'</span><span class="p">)</span>
+</code></pre></div></div> <p>::: {.output .execute_result execution_count=”13”} &lt;seaborn.axisgrid.PairGrid at 0x7f63c3f952d0&gt; :::</p> <p>::: {.output .display_data} <img src="vertopal_a579fb8fa69546c39551d8bfbeb13562/851929f301ed11e0e090e136404cfc159f2dc8ab.png" alt=""> ::: :::</p> <p>::: {#f7534aae .cell .markdown papermill=”{"duration":2.998e-2,"end_time":"2023-01-31T12:54:08.886979","exception":false,"start_time":"2023-01-31T12:54:08.856999","status":"completed"}” tags=”[]”} Above we can see all the relationships on daily returns between all the stocks. A quick glance shows an interesting correlation between Google and Amazon daily returns. It might be interesting to investigate that individual comaprison.</p> <p>While the simplicity of just calling <code class="language-plaintext highlighter-rouge">sns.pairplot()</code> is fantastic we can also use <code class="language-plaintext highlighter-rouge">sns.PairGrid()</code> for full control of the figure, including what kind of plots go in the diagonal, the upper triangle, and the lower triangle. Below is an example of utilizing the full power of seaborn to achieve this result. :::</p> <p>::: {#adcc1172 .cell .code execution_count=”14” execution=”{"iopub.execute_input":"2023-01-31T12:54:08.948902Z","iopub.status.busy":"2023-01-31T12:54:08.947955Z","iopub.status.idle":"2023-01-31T12:54:12.761348Z","shell.execute_reply":"2023-01-31T12:54:12.760116Z"}” papermill=”{"duration":3.847924,"end_time":"2023-01-31T12:54:12.764732","exception":false,"start_time":"2023-01-31T12:54:08.916808","status":"completed"}” tags=”[]”}</p> <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Set up our figure by naming it returns_fig, call PairPLot on the DataFrame
+</span><span class="n">return_fig</span> <span class="o">=</span> <span class="n">sns</span><span class="p">.</span><span class="nc">PairGrid</span><span class="p">(</span><span class="n">tech_rets</span><span class="p">.</span><span class="nf">dropna</span><span class="p">())</span>
+
+<span class="c1"># Using map_upper we can specify what the upper triangle will look like.
+</span><span class="n">return_fig</span><span class="p">.</span><span class="nf">map_upper</span><span class="p">(</span><span class="n">plt</span><span class="p">.</span><span class="n">scatter</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="sh">'</span><span class="s">purple</span><span class="sh">'</span><span class="p">)</span>
+
+<span class="c1"># We can also define the lower triangle in the figure, inclufing the plot type (kde) 
+# or the color map (BluePurple)
+</span><span class="n">return_fig</span><span class="p">.</span><span class="nf">map_lower</span><span class="p">(</span><span class="n">sns</span><span class="p">.</span><span class="n">kdeplot</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="sh">'</span><span class="s">cool_d</span><span class="sh">'</span><span class="p">)</span>
+
+<span class="c1"># Finally we'll define the diagonal as a series of histogram plots of the daily return
+</span><span class="n">return_fig</span><span class="p">.</span><span class="nf">map_diag</span><span class="p">(</span><span class="n">plt</span><span class="p">.</span><span class="n">hist</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
+</code></pre></div></div> <p>::: {.output .execute_result execution_count=”14”} &lt;seaborn.axisgrid.PairGrid at 0x7f63dbee8c10&gt; :::</p> <p>::: {.output .display_data} <img src="vertopal_a579fb8fa69546c39551d8bfbeb13562/b61f20171c4ed238c190b51d1d12316293e67ceb.png" alt=""> ::: :::</p> <p>::: {#b2c83da8 .cell .code execution_count=”15” execution=”{"iopub.execute_input":"2023-01-31T12:54:12.832758Z","iopub.status.busy":"2023-01-31T12:54:12.832382Z","iopub.status.idle":"2023-01-31T12:54:16.582659Z","shell.execute_reply":"2023-01-31T12:54:16.581393Z"}” papermill=”{"duration":3.788237,"end_time":"2023-01-31T12:54:16.586517","exception":false,"start_time":"2023-01-31T12:54:12.798280","status":"completed"}” tags=”[]”}</p> <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Set up our figure by naming it returns_fig, call PairPLot on the DataFrame
+</span><span class="n">returns_fig</span> <span class="o">=</span> <span class="n">sns</span><span class="p">.</span><span class="nc">PairGrid</span><span class="p">(</span><span class="n">closing_df</span><span class="p">)</span>
+
+<span class="c1"># Using map_upper we can specify what the upper triangle will look like.
+</span><span class="n">returns_fig</span><span class="p">.</span><span class="nf">map_upper</span><span class="p">(</span><span class="n">plt</span><span class="p">.</span><span class="n">scatter</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="sh">'</span><span class="s">purple</span><span class="sh">'</span><span class="p">)</span>
+
+<span class="c1"># We can also define the lower triangle in the figure, inclufing the plot type (kde) or the color map (BluePurple)
+</span><span class="n">returns_fig</span><span class="p">.</span><span class="nf">map_lower</span><span class="p">(</span><span class="n">sns</span><span class="p">.</span><span class="n">kdeplot</span><span class="p">,</span><span class="n">cmap</span><span class="o">=</span><span class="sh">'</span><span class="s">cool_d</span><span class="sh">'</span><span class="p">)</span>
+
+<span class="c1"># Finally we'll define the diagonal as a series of histogram plots of the daily return
+</span><span class="n">returns_fig</span><span class="p">.</span><span class="nf">map_diag</span><span class="p">(</span><span class="n">plt</span><span class="p">.</span><span class="n">hist</span><span class="p">,</span><span class="n">bins</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
+</code></pre></div></div> <p>::: {.output .execute_result execution_count=”15”} &lt;seaborn.axisgrid.PairGrid at 0x7f63bb2df7d0&gt; :::</p> <p>::: {.output .display_data} <img src="vertopal_a579fb8fa69546c39551d8bfbeb13562/49acfdb84be30b943bdb6e8c52d2c951dfd997b5.png" alt=""> ::: :::</p> <p>::: {#e23683a3 .cell .markdown papermill=”{"duration":3.4881e-2,"end_time":"2023-01-31T12:54:16.658540","exception":false,"start_time":"2023-01-31T12:54:16.623659","status":"completed"}” tags=”[]”} Finally, we could also do a correlation plot, to get actual numerical values for the correlation between the stocks' daily return values. By comparing the closing prices, we see an interesting relationship between Microsoft and Apple. :::</p> <p>::: {#66e4b9db .cell .code execution_count=”16” execution=”{"iopub.execute_input":"2023-01-31T12:54:16.728554Z","iopub.status.busy":"2023-01-31T12:54:16.728068Z","iopub.status.idle":"2023-01-31T12:54:17.309151Z","shell.execute_reply":"2023-01-31T12:54:17.307999Z"}” papermill=”{"duration":0.619447,"end_time":"2023-01-31T12:54:17.311920","exception":false,"start_time":"2023-01-31T12:54:16.692473","status":"completed"}” tags=”[]”}</p> <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">plt</span><span class="p">.</span><span class="nf">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+
+<span class="n">plt</span><span class="p">.</span><span class="nf">subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">sns</span><span class="p">.</span><span class="nf">heatmap</span><span class="p">(</span><span class="n">tech_rets</span><span class="p">.</span><span class="nf">corr</span><span class="p">(),</span> <span class="n">annot</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="sh">'</span><span class="s">summer</span><span class="sh">'</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="nf">title</span><span class="p">(</span><span class="sh">'</span><span class="s">Correlation of stock return</span><span class="sh">'</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="p">.</span><span class="nf">subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">sns</span><span class="p">.</span><span class="nf">heatmap</span><span class="p">(</span><span class="n">closing_df</span><span class="p">.</span><span class="nf">corr</span><span class="p">(),</span> <span class="n">annot</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="sh">'</span><span class="s">summer</span><span class="sh">'</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="nf">title</span><span class="p">(</span><span class="sh">'</span><span class="s">Correlation of stock closing price</span><span class="sh">'</span><span class="p">)</span>
+</code></pre></div></div> <p>::: {.output .execute_result execution_count=”16”} Text(0.5, 1.0, ‘Correlation of stock closing price’) :::</p> <p>::: {.output .display_data} <img src="vertopal_a579fb8fa69546c39551d8bfbeb13562/65373a4f0a2fe5493d1a577753c20aa4953c8615.png" alt=""> ::: :::</p> <p>::: {#73d046e7 .cell .markdown papermill=”{"duration":3.4175e-2,"end_time":"2023-01-31T12:54:17.383241","exception":false,"start_time":"2023-01-31T12:54:17.349066","status":"completed"}” tags=”[]”} Just like we suspected in our <code class="language-plaintext highlighter-rouge">PairPlot</code> we see here numerically and visually that Microsoft and Amazon had the strongest correlation of daily stock return. It's also interesting to see that all the technology comapnies are positively correlated. :::</p> <p>::: {#14ed0afd .cell .markdown papermill=”{"duration":3.4013e-2,"end_time":"2023-01-31T12:54:17.451481","exception":false,"start_time":"2023-01-31T12:54:17.417468","status":"completed"}” tags=”[]”}</p> <h1 id="5-how-much-value-do-we-put-at-risk-by-investing-in-a-particular-stock-5-how-much-value-do-we-put-at-risk-by-investing-in-a-particular-stock">5. How much value do we put at risk by investing in a particular stock? {#5-how-much-value-do-we-put-at-risk-by-investing-in-a-particular-stock}</h1> <p>:::</p> <p>::: {#d32423e8 .cell .markdown papermill=”{"duration":3.4077e-2,"end_time":"2023-01-31T12:54:17.519890","exception":false,"start_time":"2023-01-31T12:54:17.485813","status":"completed"}” tags=”[]”} There are many ways we can quantify risk, one of the most basic ways using the information we've gathered on daily percentage returns is by comparing the expected return with the standard deviation of the daily returns. :::</p> <p>::: {#e20911fb .cell .code execution_count=”17” execution=”{"iopub.execute_input":"2023-01-31T12:54:17.590989Z","iopub.status.busy":"2023-01-31T12:54:17.590290Z","iopub.status.idle":"2023-01-31T12:54:17.981489Z","shell.execute_reply":"2023-01-31T12:54:17.980394Z"}” papermill=”{"duration":0.429954,"end_time":"2023-01-31T12:54:17.984282","exception":false,"start_time":"2023-01-31T12:54:17.554328","status":"completed"}” tags=”[]”}</p> <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">rets</span> <span class="o">=</span> <span class="n">tech_rets</span><span class="p">.</span><span class="nf">dropna</span><span class="p">()</span>
+
+<span class="n">area</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">pi</span> <span class="o">*</span> <span class="mi">20</span>
+
+<span class="n">plt</span><span class="p">.</span><span class="nf">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+<span class="n">plt</span><span class="p">.</span><span class="nf">scatter</span><span class="p">(</span><span class="n">rets</span><span class="p">.</span><span class="nf">mean</span><span class="p">(),</span> <span class="n">rets</span><span class="p">.</span><span class="nf">std</span><span class="p">(),</span> <span class="n">s</span><span class="o">=</span><span class="n">area</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="nf">xlabel</span><span class="p">(</span><span class="sh">'</span><span class="s">Expected return</span><span class="sh">'</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="nf">ylabel</span><span class="p">(</span><span class="sh">'</span><span class="s">Risk</span><span class="sh">'</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">label</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="ow">in</span> <span class="nf">zip</span><span class="p">(</span><span class="n">rets</span><span class="p">.</span><span class="n">columns</span><span class="p">,</span> <span class="n">rets</span><span class="p">.</span><span class="nf">mean</span><span class="p">(),</span> <span class="n">rets</span><span class="p">.</span><span class="nf">std</span><span class="p">()):</span>
+    <span class="n">plt</span><span class="p">.</span><span class="nf">annotate</span><span class="p">(</span><span class="n">label</span><span class="p">,</span> <span class="n">xy</span><span class="o">=</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">),</span> <span class="n">xytext</span><span class="o">=</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="mi">50</span><span class="p">),</span> <span class="n">textcoords</span><span class="o">=</span><span class="sh">'</span><span class="s">offset points</span><span class="sh">'</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="sh">'</span><span class="s">right</span><span class="sh">'</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="sh">'</span><span class="s">bottom</span><span class="sh">'</span><span class="p">,</span> 
+                 <span class="n">arrowprops</span><span class="o">=</span><span class="nf">dict</span><span class="p">(</span><span class="n">arrowstyle</span><span class="o">=</span><span class="sh">'</span><span class="s">-</span><span class="sh">'</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="sh">'</span><span class="s">blue</span><span class="sh">'</span><span class="p">,</span> <span class="n">connectionstyle</span><span class="o">=</span><span class="sh">'</span><span class="s">arc3,rad=-0.3</span><span class="sh">'</span><span class="p">))</span>
+</code></pre></div></div> <p>::: {.output .display_data} <img src="vertopal_a579fb8fa69546c39551d8bfbeb13562/10ccc4faa97a777de17702cc2bb73f15747ae71d.png" alt=""> ::: :::</p> <p>::: {#9a2f0753 .cell .markdown papermill=”{"duration":3.4492e-2,"end_time":"2023-01-31T12:54:18.054502","exception":false,"start_time":"2023-01-31T12:54:18.020010","status":"completed"}” tags=”[]”}</p> <h1 id="6-predicting-the-closing-price-stock-price-of-apple-inc-6-predicting-the-closing-price-stock-price-of-apple-inc">6. Predicting the closing price stock price of APPLE inc: {#6-predicting-the-closing-price-stock-price-of-apple-inc}</h1> <p>:::</p> <p>::: {#7589388f .cell .code execution_count=”18” execution=”{"iopub.execute_input":"2023-01-31T12:54:18.126741Z","iopub.status.busy":"2023-01-31T12:54:18.126117Z","iopub.status.idle":"2023-01-31T12:54:18.838390Z","shell.execute_reply":"2023-01-31T12:54:18.837307Z"}” papermill=”{"duration":0.751269,"end_time":"2023-01-31T12:54:18.840860","exception":false,"start_time":"2023-01-31T12:54:18.089591","status":"completed"}” tags=”[]”}</p> <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Get the stock quote
+</span><span class="n">df</span> <span class="o">=</span> <span class="n">pdr</span><span class="p">.</span><span class="nf">get_data_yahoo</span><span class="p">(</span><span class="sh">'</span><span class="s">AAPL</span><span class="sh">'</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="sh">'</span><span class="s">2012-01-01</span><span class="sh">'</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="n">datetime</span><span class="p">.</span><span class="nf">now</span><span class="p">())</span>
+<span class="c1"># Show teh data
+</span><span class="n">df</span>
+</code></pre></div></div> <p>::: {.output .stream .stdout} [<strong>**</strong><strong>**</strong><strong>**</strong><strong><em>100%</em></strong><strong>**</strong><strong>**</strong><strong>**</strong>**] 1 of 1 completed :::</p> <p>::: {.output .execute_result execution_count=”18”}</p> <pre><code class="language-{=html}">&lt;div&gt;
+&lt;style scoped&gt;
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+&lt;/style&gt;
+&lt;table border="1" class="dataframe"&gt;
+  &lt;thead&gt;
+    &lt;tr style="text-align: right;"&gt;
+      &lt;th&gt;&lt;/th&gt;
+      &lt;th&gt;Open&lt;/th&gt;
+      &lt;th&gt;High&lt;/th&gt;
+      &lt;th&gt;Low&lt;/th&gt;
+      &lt;th&gt;Close&lt;/th&gt;
+      &lt;th&gt;Adj Close&lt;/th&gt;
+      &lt;th&gt;Volume&lt;/th&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Date&lt;/th&gt;
+      &lt;th&gt;&lt;/th&gt;
+      &lt;th&gt;&lt;/th&gt;
+      &lt;th&gt;&lt;/th&gt;
+      &lt;th&gt;&lt;/th&gt;
+      &lt;th&gt;&lt;/th&gt;
+      &lt;th&gt;&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;th&gt;2012-01-03 00:00:00-05:00&lt;/th&gt;
+      &lt;td&gt;14.621429&lt;/td&gt;
+      &lt;td&gt;14.732143&lt;/td&gt;
+      &lt;td&gt;14.607143&lt;/td&gt;
+      &lt;td&gt;14.686786&lt;/td&gt;
+      &lt;td&gt;12.519278&lt;/td&gt;
+      &lt;td&gt;302220800&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;2012-01-04 00:00:00-05:00&lt;/th&gt;
+      &lt;td&gt;14.642857&lt;/td&gt;
+      &lt;td&gt;14.810000&lt;/td&gt;
+      &lt;td&gt;14.617143&lt;/td&gt;
+      &lt;td&gt;14.765714&lt;/td&gt;
+      &lt;td&gt;12.586559&lt;/td&gt;
+      &lt;td&gt;260022000&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;2012-01-05 00:00:00-05:00&lt;/th&gt;
+      &lt;td&gt;14.819643&lt;/td&gt;
+      &lt;td&gt;14.948214&lt;/td&gt;
+      &lt;td&gt;14.738214&lt;/td&gt;
+      &lt;td&gt;14.929643&lt;/td&gt;
+      &lt;td&gt;12.726295&lt;/td&gt;
+      &lt;td&gt;271269600&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;2012-01-06 00:00:00-05:00&lt;/th&gt;
+      &lt;td&gt;14.991786&lt;/td&gt;
+      &lt;td&gt;15.098214&lt;/td&gt;
+      &lt;td&gt;14.972143&lt;/td&gt;
+      &lt;td&gt;15.085714&lt;/td&gt;
+      &lt;td&gt;12.859331&lt;/td&gt;
+      &lt;td&gt;318292800&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;2012-01-09 00:00:00-05:00&lt;/th&gt;
+      &lt;td&gt;15.196429&lt;/td&gt;
+      &lt;td&gt;15.276786&lt;/td&gt;
+      &lt;td&gt;15.048214&lt;/td&gt;
+      &lt;td&gt;15.061786&lt;/td&gt;
+      &lt;td&gt;12.838936&lt;/td&gt;
+      &lt;td&gt;394024400&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;...&lt;/th&gt;
+      &lt;td&gt;...&lt;/td&gt;
+      &lt;td&gt;...&lt;/td&gt;
+      &lt;td&gt;...&lt;/td&gt;
+      &lt;td&gt;...&lt;/td&gt;
+      &lt;td&gt;...&lt;/td&gt;
+      &lt;td&gt;...&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;2023-01-24 00:00:00-05:00&lt;/th&gt;
+      &lt;td&gt;140.309998&lt;/td&gt;
+      &lt;td&gt;143.160004&lt;/td&gt;
+      &lt;td&gt;140.300003&lt;/td&gt;
+      &lt;td&gt;142.529999&lt;/td&gt;
+      &lt;td&gt;142.529999&lt;/td&gt;
+      &lt;td&gt;66435100&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;2023-01-25 00:00:00-05:00&lt;/th&gt;
+      &lt;td&gt;140.889999&lt;/td&gt;
+      &lt;td&gt;142.429993&lt;/td&gt;
+      &lt;td&gt;138.809998&lt;/td&gt;
+      &lt;td&gt;141.860001&lt;/td&gt;
+      &lt;td&gt;141.860001&lt;/td&gt;
+      &lt;td&gt;65799300&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;2023-01-26 00:00:00-05:00&lt;/th&gt;
+      &lt;td&gt;143.169998&lt;/td&gt;
+      &lt;td&gt;144.250000&lt;/td&gt;
+      &lt;td&gt;141.899994&lt;/td&gt;
+      &lt;td&gt;143.960007&lt;/td&gt;
+      &lt;td&gt;143.960007&lt;/td&gt;
+      &lt;td&gt;54105100&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;2023-01-27 00:00:00-05:00&lt;/th&gt;
+      &lt;td&gt;143.160004&lt;/td&gt;
+      &lt;td&gt;147.229996&lt;/td&gt;
+      &lt;td&gt;143.080002&lt;/td&gt;
+      &lt;td&gt;145.929993&lt;/td&gt;
+      &lt;td&gt;145.929993&lt;/td&gt;
+      &lt;td&gt;70492800&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;2023-01-30 00:00:00-05:00&lt;/th&gt;
+      &lt;td&gt;144.960007&lt;/td&gt;
+      &lt;td&gt;145.550003&lt;/td&gt;
+      &lt;td&gt;142.850006&lt;/td&gt;
+      &lt;td&gt;143.000000&lt;/td&gt;
+      &lt;td&gt;143.000000&lt;/td&gt;
+      &lt;td&gt;63947600&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;2787 rows × 6 columns&lt;/p&gt;
+&lt;/div&gt;
+</code></pre> <p>::: :::</p> <p>::: {#28a8a79f .cell .code execution_count=”19” execution=”{"iopub.execute_input":"2023-01-31T12:54:18.912834Z","iopub.status.busy":"2023-01-31T12:54:18.912442Z","iopub.status.idle":"2023-01-31T12:54:19.522134Z","shell.execute_reply":"2023-01-31T12:54:19.521110Z"}” papermill=”{"duration":0.648574,"end_time":"2023-01-31T12:54:19.524465","exception":false,"start_time":"2023-01-31T12:54:18.875891","status":"completed"}” tags=”[]”}</p> <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">plt</span><span class="p">.</span><span class="nf">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
+<span class="n">plt</span><span class="p">.</span><span class="nf">title</span><span class="p">(</span><span class="sh">'</span><span class="s">Close Price History</span><span class="sh">'</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="nf">plot</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="sh">'</span><span class="s">Close</span><span class="sh">'</span><span class="p">])</span>
+<span class="n">plt</span><span class="p">.</span><span class="nf">xlabel</span><span class="p">(</span><span class="sh">'</span><span class="s">Date</span><span class="sh">'</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="nf">ylabel</span><span class="p">(</span><span class="sh">'</span><span class="s">Close Price USD ($)</span><span class="sh">'</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="nf">show</span><span class="p">()</span>
+</code></pre></div></div> <p>::: {.output .display_data} <img src="vertopal_a579fb8fa69546c39551d8bfbeb13562/9286439759d48f539304806010efa5f63e42b574.png" alt=""> ::: :::</p> <p>::: {#67324004 .cell .code execution_count=”20” execution=”{"iopub.execute_input":"2023-01-31T12:54:19.601788Z","iopub.status.busy":"2023-01-31T12:54:19.601381Z","iopub.status.idle":"2023-01-31T12:54:19.610620Z","shell.execute_reply":"2023-01-31T12:54:19.609494Z"}” papermill=”{"duration":4.938e-2,"end_time":"2023-01-31T12:54:19.612866","exception":false,"start_time":"2023-01-31T12:54:19.563486","status":"completed"}” tags=”[]”}</p> <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Create a new dataframe with only the 'Close column 
+</span><span class="n">data</span> <span class="o">=</span> <span class="n">df</span><span class="p">.</span><span class="nf">filter</span><span class="p">([</span><span class="sh">'</span><span class="s">Close</span><span class="sh">'</span><span class="p">])</span>
+<span class="c1"># Convert the dataframe to a numpy array
+</span><span class="n">dataset</span> <span class="o">=</span> <span class="n">data</span><span class="p">.</span><span class="n">values</span>
+<span class="c1"># Get the number of rows to train the model on
+</span><span class="n">training_data_len</span> <span class="o">=</span> <span class="nf">int</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="nf">ceil</span><span class="p">(</span> <span class="nf">len</span><span class="p">(</span><span class="n">dataset</span><span class="p">)</span> <span class="o">*</span> <span class="p">.</span><span class="mi">95</span> <span class="p">))</span>
+
+<span class="n">training_data_len</span>
+</code></pre></div></div> <p>::: {.output .execute_result execution_count=”20”} 2648 ::: :::</p> <p>::: {#10f840de .cell .code execution_count=”21” execution=”{"iopub.execute_input":"2023-01-31T12:54:19.687315Z","iopub.status.busy":"2023-01-31T12:54:19.686911Z","iopub.status.idle":"2023-01-31T12:54:19.839242Z","shell.execute_reply":"2023-01-31T12:54:19.838019Z"}” papermill=”{"duration":0.192669,"end_time":"2023-01-31T12:54:19.841937","exception":false,"start_time":"2023-01-31T12:54:19.649268","status":"completed"}” tags=”[]”}</p> <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Scale the data
+</span><span class="kn">from</span> <span class="n">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">MinMaxScaler</span>
+
+<span class="n">scaler</span> <span class="o">=</span> <span class="nc">MinMaxScaler</span><span class="p">(</span><span class="n">feature_range</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
+<span class="n">scaled_data</span> <span class="o">=</span> <span class="n">scaler</span><span class="p">.</span><span class="nf">fit_transform</span><span class="p">(</span><span class="n">dataset</span><span class="p">)</span>
+
+<span class="n">scaled_data</span>
+</code></pre></div></div> <p>::: {.output .execute_result execution_count=”21”} array([[0.00439887], [0.00486851], [0.00584391], …, [0.7735962 ], [0.78531794], [0.767884 ]]) ::: :::</p> <p>::: {#56760ac2 .cell .code execution_count=”22” _kg_hide-output=”true” execution=”{"iopub.execute_input":"2023-01-31T12:54:19.915974Z","iopub.status.busy":"2023-01-31T12:54:19.915577Z","iopub.status.idle":"2023-01-31T12:54:19.931894Z","shell.execute_reply":"2023-01-31T12:54:19.930611Z"}” papermill=”{"duration":5.6026e-2,"end_time":"2023-01-31T12:54:19.934116","exception":false,"start_time":"2023-01-31T12:54:19.878090","status":"completed"}” tags=”[]”}</p> <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Create the training data set 
+# Create the scaled training data set
+</span><span class="n">train_data</span> <span class="o">=</span> <span class="n">scaled_data</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="nf">int</span><span class="p">(</span><span class="n">training_data_len</span><span class="p">),</span> <span class="p">:]</span>
+<span class="c1"># Split the data into x_train and y_train data sets
+</span><span class="n">x_train</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">y_train</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="mi">60</span><span class="p">,</span> <span class="nf">len</span><span class="p">(</span><span class="n">train_data</span><span class="p">)):</span>
+    <span class="n">x_train</span><span class="p">.</span><span class="nf">append</span><span class="p">(</span><span class="n">train_data</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">60</span><span class="p">:</span><span class="n">i</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+    <span class="n">y_train</span><span class="p">.</span><span class="nf">append</span><span class="p">(</span><span class="n">train_data</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+    <span class="k">if</span> <span class="n">i</span><span class="o">&lt;=</span> <span class="mi">61</span><span class="p">:</span>
+        <span class="nf">print</span><span class="p">(</span><span class="n">x_train</span><span class="p">)</span>
+        <span class="nf">print</span><span class="p">(</span><span class="n">y_train</span><span class="p">)</span>
+        <span class="nf">print</span><span class="p">()</span>
+        
+<span class="c1"># Convert the x_train and y_train to numpy arrays 
+</span><span class="n">x_train</span><span class="p">,</span> <span class="n">y_train</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">array</span><span class="p">(</span><span class="n">x_train</span><span class="p">),</span> <span class="n">np</span><span class="p">.</span><span class="nf">array</span><span class="p">(</span><span class="n">y_train</span><span class="p">)</span>
+
+<span class="c1"># Reshape the data
+</span><span class="n">x_train</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">reshape</span><span class="p">(</span><span class="n">x_train</span><span class="p">,</span> <span class="p">(</span><span class="n">x_train</span><span class="p">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">x_train</span><span class="p">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="mi">1</span><span class="p">))</span>
+<span class="c1"># x_train.shape
+</span></code></pre></div></div> <p>::: {.output .stream .stdout} [array([0.00439887, 0.00486851, 0.00584391, 0.00677256, 0.00663019, 0.00695107, 0.00680444, 0.00655793, 0.00622217, 0.00726133, 0.00819848, 0.00790947, 0.0063263 , 0.00783722, 0.00634968, 0.01192796, 0.01149658, 0.01205972, 0.01327737, 0.01401476, 0.01395314, 0.01372576, 0.01469479, 0.01560643, 0.01663922, 0.01830739, 0.02181161, 0.02186474, 0.02381555, 0.02527333, 0.0227679 , 0.02373267, 0.02371354, 0.02641875, 0.02603411, 0.026746 , 0.02802528, 0.02873719, 0.03078787, 0.03228178, 0.03271317, 0.03286405, 0.03030973, 0.02969346, 0.02978484, 0.03218616, 0.03286193, 0.03431335, 0.03773469, 0.04229932, 0.04144504, 0.04144716, 0.04474738, 0.04578017, 0.04504489, 0.04437338, 0.04367423, 0.04599691, 0.04759072, 0.04825798])] [0.04660893460974819]</p> <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[array([0.00439887, 0.00486851, 0.00584391, 0.00677256, 0.00663019,
+       0.00695107, 0.00680444, 0.00655793, 0.00622217, 0.00726133,
+       0.00819848, 0.00790947, 0.0063263 , 0.00783722, 0.00634968,
+       0.01192796, 0.01149658, 0.01205972, 0.01327737, 0.01401476,
+       0.01395314, 0.01372576, 0.01469479, 0.01560643, 0.01663922,
+       0.01830739, 0.02181161, 0.02186474, 0.02381555, 0.02527333,
+       0.0227679 , 0.02373267, 0.02371354, 0.02641875, 0.02603411,
+       0.026746  , 0.02802528, 0.02873719, 0.03078787, 0.03228178,
+       0.03271317, 0.03286405, 0.03030973, 0.02969346, 0.02978484,
+       0.03218616, 0.03286193, 0.03431335, 0.03773469, 0.04229932,
+       0.04144504, 0.04144716, 0.04474738, 0.04578017, 0.04504489,
+       0.04437338, 0.04367423, 0.04599691, 0.04759072, 0.04825798]), array([0.00486851, 0.00584391, 0.00677256, 0.00663019, 0.00695107,
+       0.00680444, 0.00655793, 0.00622217, 0.00726133, 0.00819848,
+       0.00790947, 0.0063263 , 0.00783722, 0.00634968, 0.01192796,
+       0.01149658, 0.01205972, 0.01327737, 0.01401476, 0.01395314,
+       0.01372576, 0.01469479, 0.01560643, 0.01663922, 0.01830739,
+       0.02181161, 0.02186474, 0.02381555, 0.02527333, 0.0227679 ,
+       0.02373267, 0.02371354, 0.02641875, 0.02603411, 0.026746  ,
+       0.02802528, 0.02873719, 0.03078787, 0.03228178, 0.03271317,
+       0.03286405, 0.03030973, 0.02969346, 0.02978484, 0.03218616,
+       0.03286193, 0.03431335, 0.03773469, 0.04229932, 0.04144504,
+       0.04144716, 0.04474738, 0.04578017, 0.04504489, 0.04437338,
+       0.04367423, 0.04599691, 0.04759072, 0.04825798, 0.04660893])]
+[0.04660893460974819, 0.04441800167645807] ::: :::
+</code></pre></div></div> <p>::: {#33e725d9 .cell .code execution_count=”23” execution=”{"iopub.execute_input":"2023-01-31T12:54:20.010250Z","iopub.status.busy":"2023-01-31T12:54:20.009134Z","iopub.status.idle":"2023-01-31T12:56:51.152962Z","shell.execute_reply":"2023-01-31T12:56:51.151802Z"}” papermill=”{"duration":151.306093,"end_time":"2023-01-31T12:56:51.277008","exception":false,"start_time":"2023-01-31T12:54:19.970915","status":"completed"}” tags=”[]”}</p> <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="n">keras.models</span> <span class="kn">import</span> <span class="n">Sequential</span>
+<span class="kn">from</span> <span class="n">keras.layers</span> <span class="kn">import</span> <span class="n">Dense</span><span class="p">,</span> <span class="n">LSTM</span>
+
+<span class="c1"># Build the LSTM model
+</span><span class="n">model</span> <span class="o">=</span> <span class="nc">Sequential</span><span class="p">()</span>
+<span class="n">model</span><span class="p">.</span><span class="nf">add</span><span class="p">(</span><span class="nc">LSTM</span><span class="p">(</span><span class="mi">128</span><span class="p">,</span> <span class="n">return_sequences</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">input_shape</span><span class="o">=</span> <span class="p">(</span><span class="n">x_train</span><span class="p">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="mi">1</span><span class="p">)))</span>
+<span class="n">model</span><span class="p">.</span><span class="nf">add</span><span class="p">(</span><span class="nc">LSTM</span><span class="p">(</span><span class="mi">64</span><span class="p">,</span> <span class="n">return_sequences</span><span class="o">=</span><span class="bp">False</span><span class="p">))</span>
+<span class="n">model</span><span class="p">.</span><span class="nf">add</span><span class="p">(</span><span class="nc">Dense</span><span class="p">(</span><span class="mi">25</span><span class="p">))</span>
+<span class="n">model</span><span class="p">.</span><span class="nf">add</span><span class="p">(</span><span class="nc">Dense</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+
+<span class="c1"># Compile the model
+</span><span class="n">model</span><span class="p">.</span><span class="nf">compile</span><span class="p">(</span><span class="n">optimizer</span><span class="o">=</span><span class="sh">'</span><span class="s">adam</span><span class="sh">'</span><span class="p">,</span> <span class="n">loss</span><span class="o">=</span><span class="sh">'</span><span class="s">mean_squared_error</span><span class="sh">'</span><span class="p">)</span>
+
+<span class="c1"># Train the model
+</span><span class="n">model</span><span class="p">.</span><span class="nf">fit</span><span class="p">(</span><span class="n">x_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">epochs</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</code></pre></div></div> <p>::: {.output .stream .stderr} 2023-01-31 12:54:26.137995: I tensorflow/core/common_runtime/process_util.cc:146] Creating new thread pool with default inter op setting: 2. Tune using inter_op_parallelism_threads for best performance. 2023-01-31 12:54:26.831521: I tensorflow/compiler/mlir/mlir_graph_optimization_pass.cc:185] None of the MLIR Optimization Passes are enabled (registered 2) :::</p> <p>::: {.output .stream .stdout} 2588/2588 [==============================] - 98s 37ms/step - loss: 0.0013 :::</p> <p>::: {.output .execute_result execution_count=”23”} &lt;keras.callbacks.History at 0x7f639802c810&gt; ::: :::</p> <p>::: {#37b7a61a .cell .code execution_count=”24” execution=”{"iopub.execute_input":"2023-01-31T12:56:51.530737Z","iopub.status.busy":"2023-01-31T12:56:51.529935Z","iopub.status.idle":"2023-01-31T12:56:52.609024Z","shell.execute_reply":"2023-01-31T12:56:52.608119Z"}” papermill=”{"duration":1.213588,"end_time":"2023-01-31T12:56:52.611180","exception":false,"start_time":"2023-01-31T12:56:51.397592","status":"completed"}” tags=”[]”}</p> <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Create the testing data set
+# Create a new array containing scaled values from index 1543 to 2002 
+</span><span class="n">test_data</span> <span class="o">=</span> <span class="n">scaled_data</span><span class="p">[</span><span class="n">training_data_len</span> <span class="o">-</span> <span class="mi">60</span><span class="p">:</span> <span class="p">,</span> <span class="p">:]</span>
+<span class="c1"># Create the data sets x_test and y_test
+</span><span class="n">x_test</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">y_test</span> <span class="o">=</span> <span class="n">dataset</span><span class="p">[</span><span class="n">training_data_len</span><span class="p">:,</span> <span class="p">:]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="mi">60</span><span class="p">,</span> <span class="nf">len</span><span class="p">(</span><span class="n">test_data</span><span class="p">)):</span>
+    <span class="n">x_test</span><span class="p">.</span><span class="nf">append</span><span class="p">(</span><span class="n">test_data</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">60</span><span class="p">:</span><span class="n">i</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+    
+<span class="c1"># Convert the data to a numpy array
+</span><span class="n">x_test</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">array</span><span class="p">(</span><span class="n">x_test</span><span class="p">)</span>
+
+<span class="c1"># Reshape the data
+</span><span class="n">x_test</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">reshape</span><span class="p">(</span><span class="n">x_test</span><span class="p">,</span> <span class="p">(</span><span class="n">x_test</span><span class="p">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">x_test</span><span class="p">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="mi">1</span> <span class="p">))</span>
+
+<span class="c1"># Get the models predicted price values 
+</span><span class="n">predictions</span> <span class="o">=</span> <span class="n">model</span><span class="p">.</span><span class="nf">predict</span><span class="p">(</span><span class="n">x_test</span><span class="p">)</span>
+<span class="n">predictions</span> <span class="o">=</span> <span class="n">scaler</span><span class="p">.</span><span class="nf">inverse_transform</span><span class="p">(</span><span class="n">predictions</span><span class="p">)</span>
+
+<span class="c1"># Get the root mean squared error (RMSE)
+</span><span class="n">rmse</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">sqrt</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="nf">mean</span><span class="p">(((</span><span class="n">predictions</span> <span class="o">-</span> <span class="n">y_test</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)))</span>
+<span class="n">rmse</span>
+</code></pre></div></div> <p>::: {.output .execute_result execution_count=”24”} 4.982936594544208 ::: :::</p> <p>::: {#99b14ef6 .cell .code execution_count=”25” execution=”{"iopub.execute_input":"2023-01-31T12:56:52.848658Z","iopub.status.busy":"2023-01-31T12:56:52.847966Z","iopub.status.idle":"2023-01-31T12:56:53.305792Z","shell.execute_reply":"2023-01-31T12:56:53.304602Z"}” papermill=”{"duration":0.579655,"end_time":"2023-01-31T12:56:53.307997","exception":false,"start_time":"2023-01-31T12:56:52.728342","status":"completed"}” tags=”[]”}</p> <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Plot the data
+</span><span class="n">train</span> <span class="o">=</span> <span class="n">data</span><span class="p">[:</span><span class="n">training_data_len</span><span class="p">]</span>
+<span class="n">valid</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">training_data_len</span><span class="p">:]</span>
+<span class="n">valid</span><span class="p">[</span><span class="sh">'</span><span class="s">Predictions</span><span class="sh">'</span><span class="p">]</span> <span class="o">=</span> <span class="n">predictions</span>
+<span class="c1"># Visualize the data
+</span><span class="n">plt</span><span class="p">.</span><span class="nf">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
+<span class="n">plt</span><span class="p">.</span><span class="nf">title</span><span class="p">(</span><span class="sh">'</span><span class="s">Model</span><span class="sh">'</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="nf">xlabel</span><span class="p">(</span><span class="sh">'</span><span class="s">Date</span><span class="sh">'</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="nf">ylabel</span><span class="p">(</span><span class="sh">'</span><span class="s">Close Price USD ($)</span><span class="sh">'</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="nf">plot</span><span class="p">(</span><span class="n">train</span><span class="p">[</span><span class="sh">'</span><span class="s">Close</span><span class="sh">'</span><span class="p">])</span>
+<span class="n">plt</span><span class="p">.</span><span class="nf">plot</span><span class="p">(</span><span class="n">valid</span><span class="p">[[</span><span class="sh">'</span><span class="s">Close</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">Predictions</span><span class="sh">'</span><span class="p">]])</span>
+<span class="n">plt</span><span class="p">.</span><span class="nf">legend</span><span class="p">([</span><span class="sh">'</span><span class="s">Train</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">Val</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">Predictions</span><span class="sh">'</span><span class="p">],</span> <span class="n">loc</span><span class="o">=</span><span class="sh">'</span><span class="s">lower right</span><span class="sh">'</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="nf">show</span><span class="p">()</span>
+</code></pre></div></div> <p>::: {.output .stream .stderr} /opt/conda/lib/python3.7/site-packages/ipykernel_launcher.py:4: SettingWithCopyWarning: A value is trying to be set on a copy of a slice from a DataFrame. Try using .loc[row_indexer,col_indexer] = value instead</p> <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  after removing the cwd from sys.path. :::
+</code></pre></div></div> <p>::: {.output .display_data} <img src="vertopal_a579fb8fa69546c39551d8bfbeb13562/5ea7f9ff279fe698cdcbdbd01f10c1ac52efce25.png" alt=""> ::: :::</p> <p>::: {#c6fc7f35 .cell .code execution_count=”26” execution=”{"iopub.execute_input":"2023-01-31T12:56:53.550333Z","iopub.status.busy":"2023-01-31T12:56:53.549282Z","iopub.status.idle":"2023-01-31T12:56:53.563444Z","shell.execute_reply":"2023-01-31T12:56:53.562334Z"}” papermill=”{"duration":0.136463,"end_time":"2023-01-31T12:56:53.565870","exception":false,"start_time":"2023-01-31T12:56:53.429407","status":"completed"}” tags=”[]”}</p> <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Show the valid and predicted prices
+</span><span class="n">valid</span>
+</code></pre></div></div> <p>::: {.output .execute_result execution_count=”26”}</p> <pre><code class="language-{=html}">&lt;div&gt;
+&lt;style scoped&gt;
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+&lt;/style&gt;
+&lt;table border="1" class="dataframe"&gt;
+  &lt;thead&gt;
+    &lt;tr style="text-align: right;"&gt;
+      &lt;th&gt;&lt;/th&gt;
+      &lt;th&gt;Close&lt;/th&gt;
+      &lt;th&gt;Predictions&lt;/th&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Date&lt;/th&gt;
+      &lt;th&gt;&lt;/th&gt;
+      &lt;th&gt;&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;th&gt;2022-07-13 00:00:00-04:00&lt;/th&gt;
+      &lt;td&gt;145.490005&lt;/td&gt;
+      &lt;td&gt;146.457565&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;2022-07-14 00:00:00-04:00&lt;/th&gt;
+      &lt;td&gt;148.470001&lt;/td&gt;
+      &lt;td&gt;146.872879&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;2022-07-15 00:00:00-04:00&lt;/th&gt;
+      &lt;td&gt;150.169998&lt;/td&gt;
+      &lt;td&gt;147.586197&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;2022-07-18 00:00:00-04:00&lt;/th&gt;
+      &lt;td&gt;147.070007&lt;/td&gt;
+      &lt;td&gt;148.572937&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;2022-07-19 00:00:00-04:00&lt;/th&gt;
+      &lt;td&gt;151.000000&lt;/td&gt;
+      &lt;td&gt;148.995255&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;...&lt;/th&gt;
+      &lt;td&gt;...&lt;/td&gt;
+      &lt;td&gt;...&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;2023-01-24 00:00:00-05:00&lt;/th&gt;
+      &lt;td&gt;142.529999&lt;/td&gt;
+      &lt;td&gt;138.565536&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;2023-01-25 00:00:00-05:00&lt;/th&gt;
+      &lt;td&gt;141.860001&lt;/td&gt;
+      &lt;td&gt;140.022110&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;2023-01-26 00:00:00-05:00&lt;/th&gt;
+      &lt;td&gt;143.960007&lt;/td&gt;
+      &lt;td&gt;141.225128&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;2023-01-27 00:00:00-05:00&lt;/th&gt;
+      &lt;td&gt;145.929993&lt;/td&gt;
+      &lt;td&gt;142.469315&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;2023-01-30 00:00:00-05:00&lt;/th&gt;
+      &lt;td&gt;143.000000&lt;/td&gt;
+      &lt;td&gt;143.833130&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;139 rows × 2 columns&lt;/p&gt;
+&lt;/div&gt;
+</code></pre> <p>::: :::</p> <p>::: {#1b62ce94 .cell .markdown papermill=”{"duration":0.118756,"end_time":"2023-01-31T12:56:53.802735","exception":false,"start_time":"2023-01-31T12:56:53.683979","status":"completed"}” tags=”[]”}</p> <h1 id="summary">Summary</h1> <p>In this notebook, you discovered and explored stock data.</p> <p>Specifically, you learned:</p> <ul> <li>How to load stock market data from the YAHOO Finance website using yfinance.</li> <li>How to explore and visualize time-series data using Pandas, Matplotlib, and Seaborn.</li> <li>How to measure the correlation between stocks.</li> <li>How to measure the risk of investing in a particular stock.</li> </ul> <p>Do you have any questions? Ask your questions in the comments below and I will do my best to answer.</p> <p>References: <a href="https://www.investopedia.com/terms/c/correlation.asp" rel="external nofollow noopener" target="_blank">https://www.investopedia.com/terms/c/correlation.asp</a> <a href="https://www.udemy.com/course/learning-python-for-data-analysis-and-visualization/" rel="external nofollow noopener" target="_blank">Jose Portilla Udemy Course: Learning Python for Data Analysis and Visualization</a> :::</p> <p>::: {#f9f128ac .cell .code papermill=”{"duration":0.120256,"end_time":"2023-01-31T12:56:54.043466","exception":false,"start_time":"2023-01-31T12:56:53.923210","status":"completed"}” tags=”[]”}</p> <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code></code></pre></div></div> <p>:::</p> </article> <h2>References</h2> <div class="publications"> </div> </div> </div> <footer class="fixed-bottom" role="contentinfo"> <div class="container mt-0"> © Copyright 2024 Gordon Ma. Powered by <a href="https://jekyllrb.com/" target="_blank" rel="external nofollow noopener">Jekyll</a> with <a href="https://github.com/alshedivat/al-folio" rel="external nofollow noopener" target="_blank">al-folio</a> theme. Hosted by <a href="https://pages.github.com/" target="_blank" rel="external nofollow noopener">GitHub Pages</a>. </div> </footer> <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script> <script src="/assets/js/bootstrap.bundle.min.js"></script> <script src="https://cdn.jsdelivr.net/npm/mdbootstrap@4.20.0/js/mdb.min.js" integrity="sha256-NdbiivsvWt7VYCt6hYNT3h/th9vSTL4EDWeGs5SN3DA=" crossorigin="anonymous"></script> <script defer src="https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js" integrity="sha256-Nn1q/fx0H7SNLZMQ5Hw5JLaTRZp0yILA/FRexe19VdI=" crossorigin="anonymous"></script> <script defer src="https://cdn.jsdelivr.net/npm/imagesloaded@5.0.0/imagesloaded.pkgd.min.js" integrity="sha256-htrLFfZJ6v5udOG+3kNLINIKh2gvoKqwEhHYfTTMICc=" crossorigin="anonymous"></script> <script defer src="/assets/js/masonry.js" type="text/javascript"></script> <script defer src="https://cdn.jsdelivr.net/npm/medium-zoom@1.1.0/dist/medium-zoom.min.js" integrity="sha256-ZgMyDAIYDYGxbcpJcfUnYwNevG/xi9OHKaR/8GK+jWc=" crossorigin="anonymous"></script> <script defer src="/assets/js/zoom.js?85ddb88934d28b74e78031fd54cf8308"></script> <script src="/assets/js/no_defer.js?2930004b8d7fcd0a8e00fdcfc8fc9f24"></script> <script defer src="/assets/js/common.js?da39b660470d1ba6e6b8bf5f37070b6e"></script> <script defer src="/assets/js/copy_code.js?12775fdf7f95e901d7119054556e495f" type="text/javascript"></script> <script async src="https://d1bxh8uas1mnw7.cloudfront.net/assets/embed.js"></script> <script async src="https://badge.dimensions.ai/badge.js"></script> <script type="text/javascript">window.MathJax={tex:{tags:"ams"}};</script> <script defer type="text/javascript" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3.2.0/es5/tex-mml-chtml.js"></script> <script defer src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script> <script type="text/javascript">function progressBarSetup(){"max"in document.createElement("progress")?(initializeProgressElement(),$(document).on("scroll",function(){progressBar.attr({value:getCurrentScrollPosition()})}),$(window).on("resize",initializeProgressElement)):(resizeProgressBar(),$(document).on("scroll",resizeProgressBar),$(window).on("resize",resizeProgressBar))}function getCurrentScrollPosition(){return $(window).scrollTop()}function initializeProgressElement(){let e=$("#navbar").outerHeight(!0);$("body").css({"padding-top":e}),$("progress-container").css({"padding-top":e}),progressBar.css({top:e}),progressBar.attr({max:getDistanceToScroll(),value:getCurrentScrollPosition()})}function getDistanceToScroll(){return $(document).height()-$(window).height()}function resizeProgressBar(){progressBar.css({width:getWidthPercentage()+"%"})}function getWidthPercentage(){return getCurrentScrollPosition()/getDistanceToScroll()*100}const progressBar=$("#progress");window.onload=function(){setTimeout(progressBarSetup,50)};</script> </body> </html>
