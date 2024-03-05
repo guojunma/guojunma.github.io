@@ -3,7 +3,7 @@ layout: page
 title: "Prediction of inflation rate with times-series data"
 author: "Gordon Ma"
 importance: 3
-category: fun
+category: Business
 related_publications: true
 graphics: yes
 indent: true
@@ -21,7 +21,7 @@ fontsize: 12pt
 
 The goal of this project is to build a statistical model to forecast the interest rate of Canada. By analyzing the historical economic and financial data from the website of international monetary policy(IMF), we would like to discover the underlying mathematical law of inflation. Economic indicators for measuring the inflation rate included the Consumer price index (CPI), the producer price index(PPI) and the GDP deflator. The most commonly used one is CPI, which is defined as the price of one fixed basket of consumer goods and services in one period. CPI include the cost of food, beverages, housing, education, transportation and medical care. The unit of CPI s measured in percentage, which is compared to the based year. For example, if the base year is $2010$, then the CPI of $$125$$ means that the price increased by $$125$$ percent compared to the year $$2010$$.
 
-There are many statistical models to predict inflation rates in the existing literature. For example, the Phillips curve shows the inverse trade-off between rates of inflation and rates of unemployment [@WatsonCrick1953]. One other method involves regressions based on implicit expectations derived from asset prices, such as nominal Treasury debt \cite{bib2, bib3}. In this project, we adopt the method that prediction based only on past inflation rate. This leads to time series models such as auto-regressive integrated moving average (ARIMA) models.
+There are many statistical models to predict inflation rates in the existing literature. For example, the Phillips curve shows the inverse trade-off between rates of inflation and rates of unemployment [@WatsonCrick1953][Watson, 1953]. One other method involves regressions based on implicit expectations derived from asset prices, such as nominal Treasury debt \cite{bib2, bib3}. In this project, we adopt the method that prediction based only on past inflation rate. This leads to time series models such as auto-regressive integrated moving average (ARIMA) models.
 
 We also examine the correlation and causal relation of inflation and its predictors such as government spending. Economists believe that the causes of inflation included increased government spending, demand/supply shocks and unemployment rate. We would like to investigate how strongly these variables are correlated. By examining the correlation of time lag variable, it is possible to find causal relations. We also analyze the US data and examine the cross-correlation with the Canadian data.
 
@@ -173,32 +173,6 @@ sarima.for(CPI, 12, 0, 1, 0, 2, 0, 0 , 12 )
 ## 2021                               0.3571662 0.5051093
 ## 2022 1.1294587 1.1845863 1.2372600
 ```
-
----
-references:
-- type: article-journal
-  id: WatsonCrick1953
-  author:
-  - family: Watson
-    given: J. D.
-  - family: Crick
-    given: F. H. C.
-  issued:
-    date-parts:
-    - - 1953
-      - 4
-      - 25
-  title: 'Molecular structure of nucleic acids: a structure for
-    deoxyribose nucleic acid'
-  title-short: Molecular structure of nucleic acids
-  container-title: Nature
-  volume: 171
-  issue: 4356
-  page: 737-738
-  DOI: 10.1038/171737a0
-  URL: https://www.nature.com/articles/171737a0
-  language: en-GB
-  ---
 
   ## References
 
