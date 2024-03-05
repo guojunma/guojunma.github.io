@@ -174,6 +174,31 @@ sarima.for(CPI, 12, 0, 1, 0, 2, 0, 0 , 12 )
 ## 2022 1.1294587 1.1845863 1.2372600
 ```
 
+---
+references:
+- type: article-journal
+  id: WatsonCrick1953
+  author:
+  - family: Watson
+    given: J. D.
+  - family: Crick
+    given: F. H. C.
+  issued:
+    date-parts:
+    - - 1953
+      - 4
+      - 25
+  title: 'Molecular structure of nucleic acids: a structure for
+    deoxyribose nucleic acid'
+  title-short: Molecular structure of nucleic acids
+  container-title: Nature
+  volume: 171
+  issue: 4356
+  page: 737-738
+  DOI: 10.1038/171737a0
+  URL: https://www.nature.com/articles/171737a0
+  language: en-GB
+  ---
 
   ## References
 
