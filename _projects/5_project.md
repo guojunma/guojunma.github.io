@@ -1,18 +1,32 @@
 ---
-layout: page
-title: "Stock Market analysis"
-author: "Gordon Ma"
-importance: 2
-category: Business
-related_publications: true
-graphics: yes
-indent: true
-bibliography: ref.bib
-link-citations: true
-geometry: left=1.5cm,right=1.5cm,top=1cm,bottom=1.5cm
-fontsize: 12pt
+jupyter:
+  kernelspec:
+    display_name: Python 3 (ipykernel)
+    language: python
+    name: python3
+  language_info:
+    codemirror_mode:
+      name: ipython
+      version: 3
+    file_extension: .py
+    mimetype: text/x-python
+    name: python
+    nbconvert_exporter: python
+    pygments_lexer: ipython3
+    version: 3.9.12
+  nbformat: 4
+  nbformat_minor: 5
+  papermill:
+    default_parameters: {}
+    duration: 212.249929
+    end_time: "2023-01-31T12:56:57.092165"
+    environment_variables: {}
+    input_path: \_\_notebook\_\_.ipynb
+    output_path: \_\_notebook\_\_.ipynb
+    parameters: {}
+    start_time: "2023-01-31T12:53:24.842236"
+    version: 2.3.4
 ---
-
 
 ::: {#1a5343f8 .cell .markdown papermill="{\"duration\":1.3433e-2,\"end_time\":\"2023-01-31T12:53:33.338639\",\"exception\":false,\"start_time\":\"2023-01-31T12:53:33.325206\",\"status\":\"completed\"}" tags="[]"}
 # Data Project - Stock Market Analysis
