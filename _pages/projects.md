@@ -5,7 +5,7 @@ permalink: /projects/
 description: A growing collection of cool projects.
 nav: true
 nav_order: 3
-display_categories: [Science, Business, work]
+display_categories: [Science, Business]
 horizontal: false
 ---
 
