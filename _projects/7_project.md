@@ -1,10 +1,11 @@
 ---
 layout: page
-title: project 4
-description: another without an image
-img:
+title: Analytics and visualization of political data
+description: In this report, I will be presenting a visualization of the behavior of politicians and creating metrics to quantitatively measure their performance using legislative data. (Skills -> data visualization, data preparation, communication, teamwork) 
+img: assets/img/Network.png
+redirect: https://www.pims.math.ca/files/M2PI-2021-Final-Report.pdf
 importance: 3
-category: fun
+category: Other
 ---
 
 Every project has a beautiful feature showcase page.
