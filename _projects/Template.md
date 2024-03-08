@@ -5,7 +5,7 @@ description: In this report, I will be presenting a visualization of the behavio
 img: assets/img/Network.png
 redirect: https://www.pims.math.ca/files/M2PI-2021-Final-Report.pdf
 importance: 3
-category: Other
+category: Bus
 ---
 
 Every project has a beautiful feature showcase page.
