@@ -4,7 +4,7 @@ title: "Prediction of inflation rate with times-series data"
 Description: This project aims to build a forecast model for inflation rate in Canada
 author: "Gordon Ma"
 importance: 2
-category: Other
+category: abc
 related_publications: true
 graphics: yes
 img: assets/img/12.jpg

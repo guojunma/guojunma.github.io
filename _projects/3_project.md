@@ -1,10 +1,11 @@
 ---
 layout: page
-title: project 4
-description: another without an image
-img:
-importance: 3
-category: fun
+title: Music store data analysis using SQL
+description: SQL project to analyze online music store data 
+img: assets/img/1.jpg
+importance: 2
+redirect: https://guojunma.github.io/projects/Music-store-data-analysis-using-SQL
+category: Other
 ---
 
 Every project has a beautiful feature showcase page.
