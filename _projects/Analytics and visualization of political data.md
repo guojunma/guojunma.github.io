@@ -1,11 +1,11 @@
 ---
 layout: page
 title: Analytics and visualization of political data
-description: Visualization of the activities of politicians and create metrics to quantitatively measure their performance using legislative data. (Skills -> data visualization, data preparation, communication, teamwork) 
-img: assets/img/10.jpg
+description: Visualize and quantitatively measure politicians' performance using legislative data. 
+img: assets/img/images_parliament.jpeg
 redirect: https://www.pims.math.ca/files/M2PI-2021-Final-Report.pdf#page=53
-importance: 3
-category: Other
+importance: 5
+category: Data Science
 ---
 
 Every project has a beautiful feature showcase page.
