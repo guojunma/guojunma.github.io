@@ -3,6 +3,6 @@ github_users:
 
 github_repos:
   - guojunma/deep-learning-project
-  - guojunma/predicting-stockmarket
-  - guojunma/GWASstudy
-  - guojunma/STAT540-analysis-assignment
+  - guojunma/Stock-Market-Analysis
+  - guojunma/Mastercard-fraud-detection
+  - guojunma/Chinook-database-analysis
