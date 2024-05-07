@@ -1,9 +1,9 @@
 ---
 layout: page
 title: Stock Market Analysis
-description: In this project, I explore historical stock market prices and utilize deep learning methods to predict future prices.  
+description: Utilize deep learning methods such as LSTM to predict future stock market prices.  
 
-             skills `:` python programming, deep learning, Keras.  
+             <p style="color: skills  </p> : python programming, deep learning, Keras.  
 img: assets/img/images_finance.jpeg
 github: https://github.com/guojunma/Data-Science-Project
 redirect: https://guojunma.github.io/projects/Stock-Market-Analysis/
