@@ -7,11 +7,11 @@
           include figure.liquid
           loading="eager"
           path=project.img
-          sizes = "400px"
+          sizes = "250px"
           alt="project thumbnail"
         %}
       {% endif %}
-      <div class="card-body">
+      <div class="card-body" style="display: none;">
         <h2 class="card-title">{{ project.title }}</h2>
         <p class="card-text">{{ project.description }}</p>
         <p class="card-text" style="color: rgb(17, 0, 255);"> Skills: {{ project.skills }}</p>
@@ -34,3 +34,15 @@
     </div>
   </a>
 </div>
+
+<style>
+  .card-body {
+      display: none;
+  }
+  
+  .card:hover .card-body {
+      display: block;
+  }
+  </style>
+
+
