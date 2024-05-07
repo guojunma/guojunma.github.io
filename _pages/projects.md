@@ -6,7 +6,7 @@ description: A growing collection of cool projects.
 nav: true
 nav_order: 3
 display_categories: [Data Science]
-horizontal: false
+horizontal: true
 ---
 
 <!-- pages/projects.md -->
