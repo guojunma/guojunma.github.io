@@ -1,0 +1,23 @@
+{
+  "basics": {
+    "name": "Guojun Ma",
+    "label": "Data Scientist",
+    "image": "",
+    "email": "guojunma5@gmail.com",
+    "url": "https://guojunma.github.io/",
+    "location": {
+      "address": "",
+      "postalCode": "",
+      "city": "Vancouver",
+      "countryCode": "Canada",
+      "Province": "BC"
+    },
+    "profiles": [
+      {
+        "network": "Linkedin",
+        "username": "Guojun Ma",
+        "url": "www.linkedin.com/in/gordon-ma-3a9b23242"
+      }
+    ]
+  }
+}
