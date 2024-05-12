@@ -3,44 +3,11 @@
   contents:
     - name: Full Name
       value: Guojun Ma
-
-- title: Education
-  type: time_table
-  contents:
-    - title: M.Sc
-      institution: University of Victoria, Victoria, Canada
-      year: 2022
-      description:
-        - Majored in statistics.
-    - title: BSc
-      institution: University of Alberta, Edmonton, Canada
-      year: 2020
-      description: 
-        - Majored in mathematics and economics.
-        - Graduated with distinction.
-       
-
-- title: Honors and Awards
-  type: time_table
-  contents:
-    - year: 2020
-      items:
-        - UVic Graduate Fellowship
-    - year: 2018,2019
-      items:
-        - Jason Lang scholarship
-
-- title: Academic Interests
-  type: nested_list
-  contents:
-    - title: Bioinformatics.
-      items:
-        - Developing statistical Methods for high-dimensional biological data such as RNA-seq. 
-    - title: Mathematical theory of data science.
-      items:
-        - Theoretical guanrantees for deep learning algorithms.
-
-- title: Other Interests
-  type: list
-  contents:
-    - <u>Hobbies:</u> Chess, Sports, etc.
+    - Location: 
+      value: Vancouver, BC, Canada
+    - Email: 
+      value: guojunma5@gmail.com
+    - Linkedin:
+      value: http://www.linkedin.com/in/gordon-ma-3a9b23242
+    - Portfolio:
+      value: https://guojunma.github.io/
