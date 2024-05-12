@@ -2,7 +2,7 @@ github_users:
   - guojunma
 
 github_repos:
-  - guojunma/Data-Science-Project
-  - guojunma/Bioinformatics
   - guojunma/deep-learning-project
-  - guojunma/pyprobml
+  - guojunma/Stock-Market-Analysis
+  - guojunma/Mastercard-fraud-detection
+  - guojunma/Chinook-database-analysis
