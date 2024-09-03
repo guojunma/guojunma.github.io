@@ -3,11 +3,11 @@
   contents:
     - name: Full Name
       value: Guojun Ma
-    - Location: 
+    - name: Location
       value: Vancouver, BC, Canada
-    - Email: 
+    - name: Email
       value: guojunma5@gmail.com
-    - Linkedin:
+    - name: LinkedIn
       value: http://www.linkedin.com/in/gordon-ma-3a9b23242
-    - Portfolio:
+    - name: Portfolio
       value: https://guojunma.github.io/
