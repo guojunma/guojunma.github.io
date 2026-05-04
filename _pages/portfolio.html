@@ -7,8 +7,108 @@ author_profile: true
 
 {% include base_path %}
 
+<style>
+  .portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-top: 20px;
+  }
 
-{% for post in site.portfolio %}
-  {% include archive-single.html %}
-{% endfor %}
+  @media (max-width: 1024px) {
+    .portfolio-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 768px) {
+    .portfolio-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .portfolio-item {
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease;
+  }
+
+  .portfolio-item:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+
+  .portfolio-item-image {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    display: block;
+  }
+
+  .portfolio-item-content {
+    padding: 15px;
+  }
+
+  .portfolio-item-title {
+    margin: 0 0 10px 0;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 1.3;
+  }
+
+  .portfolio-item-title a {
+    color: #2c3e50;
+    text-decoration: none;
+  }
+
+  .portfolio-item-title a:hover {
+    color: #0072b9;
+    text-decoration: underline;
+  }
+
+  .portfolio-item-excerpt {
+    margin: 0;
+    font-size: 14px;
+    color: #666;
+    line-height: 1.4;
+  }
+</style>
+
+<div class="portfolio-grid">
+  {% for post in site.portfolio %}
+    {% assign teaser = nil %}
+    
+    {% if post.img %}
+      {% assign teaser = post.img %}
+    {% elsif post.header.teaser %}
+      {% assign teaser = post.header.teaser %}
+    {% endif %}
+
+    <div class="portfolio-item">
+      {% if teaser %}
+        <div class="portfolio-item-image-wrapper">
+          <img src="{% if teaser contains '://' %}{{ teaser }}{% elsif teaser contains '/images/' %}{{ base_path }}{{ teaser }}{% else %}{{ base_path }}/images/{{ teaser }}{% endif %}" 
+               alt="{{ post.title }}" 
+               class="portfolio-item-image">
+        </div>
+      {% endif %}
+      <div class="portfolio-item-content">
+        <h3 class="portfolio-item-title">
+          {% if post.link %}
+            <a href="{{ post.link }}">{{ post.title | markdownify | remove: "<p>" | remove: "</p>" }}</a>
+          {% else %}
+            <a href="{{ base_path }}{{ post.url }}">{{ post.title | markdownify | remove: "<p>" | remove: "</p>" }}</a>
+          {% endif %}
+        </h3>
+        {% if post.excerpt %}
+          <p class="portfolio-item-excerpt">
+            {{ post.excerpt | strip_html | truncatewords: 20 }}
+          </p>
+        {% endif %}
+      </div>
+    </div>
+  {% endfor %}
+</div>
 
